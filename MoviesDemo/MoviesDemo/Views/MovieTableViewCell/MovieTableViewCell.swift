@@ -30,7 +30,7 @@ final class MovieTableViewCell: UITableViewCell {
     private func setupData(withMovie movie: Movie) {
         titleLabel.text = movie.title
         popularityLabel.text = movie.popularityText
-        descriptionLabel.text = movie.overview ?? ""
+        descriptionLabel.text = movie.overview
         loadPosterImage(urlString: movie.posterUrl)
     }
     

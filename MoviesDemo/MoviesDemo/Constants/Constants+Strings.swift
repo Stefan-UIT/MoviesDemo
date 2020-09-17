@@ -10,6 +10,7 @@ import Foundation
 
 struct Messages {
     static let couldNotGetMoviesData = "Could not get movies data"
+    static let couldNotGetMovieDetail = "Could not get movie detail"
     static let pullToRefresh = "Pull to refresh"
     static let couldNotDecode = "Could not decode the response"
 }

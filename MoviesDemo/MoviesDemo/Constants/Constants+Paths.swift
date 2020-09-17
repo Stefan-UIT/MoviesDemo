@@ -15,6 +15,7 @@ struct AppGateways {
 
 struct Paths {
     static let fetchMovies = "/discover/movie"
+    static let fetchMovieDetail = "/movie/%d"
     static let dataPerPage = 20
 }
 

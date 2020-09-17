@@ -34,8 +34,12 @@ final class MoviesViewController: UIViewController {
         return .lightContent
     }
     
-    private func redirectToMovieDetail() {
-        
+    private func redirectToMovieDetail(withMovie movie: Movie) {
+        guard let movieDetailVC = ControllerHelper.load(MovieDetailViewController.self, fromStoryboard: Keys.main) else { return }
+        let vModel = MovieDetailViewModel.init(movie: movie)
+        movieDetailVC.viewModel = vModel
+        vModel.delegate = movieDetailVC
+        self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
     
     private func initAdapter() {
@@ -79,8 +83,6 @@ final class MoviesViewController: UIViewController {
     private func setupTableView() {
         tableView.register(MovieTableViewCell.uiNib(), forCellReuseIdentifier: MovieTableViewCell.cellIdentifier)
     }
-    
-    
 }
 
 // MARK: - MoviesViewModelDelegate
@@ -113,7 +115,8 @@ extension MoviesViewController: MoviesListProtocol {
     }
     
     func didSelectItem(at indexPath: IndexPath) {
-        print("did selected ")
+        let movie = viewModel.movie(at: indexPath.row)
+        redirectToMovieDetail(withMovie: movie)
     }
     
     func wilDisplayItem(at indexPath: IndexPath) {

@@ -54,6 +54,11 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cca-dF-AZl" secondAttribute="height" multiplier="2:3" id="Vpz-Df-5wD"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8RU-hl-kVb">
                                 <rect key="frame" x="305" y="78" width="25" height="21.5"/>

@@ -33,6 +33,8 @@
 		2E5F5FD425132A1100C757EC /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FD225132A1100C757EC /* MoviesViewController.swift */; };
 		2E5F5FD625132A2A00C757EC /* MoviesListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FD525132A2A00C757EC /* MoviesListAdapter.swift */; };
 		2E5F5FD825132C2F00C757EC /* Constants+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FD725132C2F00C757EC /* Constants+Image.swift */; };
+		2E5F5FDB25133E1D00C757EC /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */; };
+		2E5F5FDD2513576000C757EC /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */; };
 		4AB868FCFD0053388890CFA9 /* Pods_MoviesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */; };
 		A7A1E8B27AAB226E9E75DAEE /* Pods_MoviesDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,8 @@
 		2E5F5FD225132A1100C757EC /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
 		2E5F5FD525132A2A00C757EC /* MoviesListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListAdapter.swift; sourceTree = "<group>"; };
 		2E5F5FD725132C2F00C757EC /* Constants+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Image.swift"; sourceTree = "<group>"; };
+		2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BDE0EF4D42B5218D199CBC /* Pods-MoviesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDemo.release.xcconfig"; path = "Target Support Files/Pods-MoviesDemo/Pods-MoviesDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			children = (
 				2E5F5FB725131D6E00C757EC /* MoviesViewModel.swift */,
 				2E5F5FB925131DB300C757EC /* BaseViewModel.swift */,
+				2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 		2E5F5FA025130F3300C757EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E5F5FD925133E0100C757EC /* MovieDetailViewController */,
 				2E5F5FCF25132A1100C757EC /* LoadingViewController */,
 				2E5F5FD125132A1100C757EC /* MoviesViewContrroller */,
 			);
@@ -278,6 +284,14 @@
 				2E5F5FD525132A2A00C757EC /* MoviesListAdapter.swift */,
 			);
 			path = MoviesViewContrroller;
+			sourceTree = "<group>";
+		};
+		2E5F5FD925133E0100C757EC /* MovieDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */,
+			);
+			path = MovieDetailViewController;
 			sourceTree = "<group>";
 		};
 		659082AA18B2906CC20E8F75 /* Pods */ = {
@@ -506,7 +520,9 @@
 				2E5F5FC7251320E100C757EC /* UIViewController+Alerts.swift in Sources */,
 				2E5F5FBC25131EA800C757EC /* ControllerHelper.swift in Sources */,
 				2E5F5FBF25131F9600C757EC /* UIViewController+Spinner.swift in Sources */,
+				2E5F5FDD2513576000C757EC /* MovieDetailViewModel.swift in Sources */,
 				2E5F5FD825132C2F00C757EC /* Constants+Image.swift in Sources */,
+				2E5F5FDB25133E1D00C757EC /* MovieDetailViewController.swift in Sources */,
 				2E5F5FA7251311B400C757EC /* Constants+Strings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

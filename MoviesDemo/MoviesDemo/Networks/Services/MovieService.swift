@@ -11,6 +11,7 @@ import Moya
 
 enum MovieService {
     case fetchMovies(page: Int)
+    case fetchMovieDetail(movieId: Int)
 }
 
 extension MovieService: TargetType {
@@ -18,14 +19,13 @@ extension MovieService: TargetType {
         switch self {
         case .fetchMovies:
             return Paths.fetchMovies
+        case .fetchMovieDetail(let movieId):
+            return String(format: Paths.fetchMovieDetail, movieId)
         }
     }
     
     var method: Moya.Method {
-        switch self {
-        case .fetchMovies:
-            return .get
-        }
+        return .get
     }
     
     var parameters: [String: Any] {
@@ -35,12 +35,18 @@ extension MovieService: TargetType {
                 Keys.page: page,
                 "api_key": "328c283cd27bd1877d9080ccb1604c91"
             ]
+        case .fetchMovieDetail:
+            return [
+                "api_key": "328c283cd27bd1877d9080ccb1604c91"
+            ]
         }
     }
     
     var task: Task {
         switch self {
         case .fetchMovies:
+            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+        case .fetchMovieDetail:
             return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
         }
     }

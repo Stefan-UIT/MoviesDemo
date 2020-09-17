@@ -41,11 +41,11 @@ struct JsonTranslationLayer: Translatable {
 }
 
 class NetworkManager: Networkable {
-//    let authPlugin = AccessTokenPlugin { (_) -> String in
-//        return appKeyChain.accessToken
-//    }
+    //    let authPlugin = AccessTokenPlugin { (_) -> String in
+    //        return appKeyChain.accessToken
+    //    }
     
-//    lazy var provider = MoyaProvider<MultiTarget>(plugins: [authPlugin])
+    //    lazy var provider = MoyaProvider<MultiTarget>(plugins: [authPlugin])
     lazy var provider = MoyaProvider<MultiTarget>()
     let translationLayer: Translatable
     
@@ -57,7 +57,7 @@ class NetworkManager: Networkable {
 // MARK: - Movies Network Services
 extension NetworkManager {
     func fetchMovies(page: Int,
-                      completion: @escaping ([Movie]?, Error?) -> Void) {
+                     completion: @escaping ([Movie]?, Error?) -> Void) {
         provider.request(MultiTarget(MovieService.fetchMovies(page: page)),
                          completion: { (response) in
                             switch response {
@@ -73,4 +73,23 @@ extension NetworkManager {
                             }
         })
     }
+    
+    func fetchMovieDetail(movieId: Int,
+                          completion: @escaping (Movie?, Error?) -> Void) {
+        provider.request(MultiTarget(MovieService.fetchMovieDetail(movieId: movieId)),
+                         completion: { (response) in
+                            switch response {
+                            case .failure(let error):
+                                completion(nil, error)
+                            case .success(let response):
+                                do {
+                                    let decodedData = try self.translationLayer.decode(Movie.self, fromData: response.data)
+                                    completion(decodedData, nil)
+                                } catch let error {
+                                    completion(nil, error)
+                                }
+                            }
+        })
+    }
+    
 }
