@@ -27,7 +27,7 @@ class MoviesViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFetchMovieDetailSuccess() {
+    func testFetchMoviesSuccess() {
         viewModel.currentPage = 1
         viewModel.fetchMovies()
         
@@ -36,15 +36,15 @@ class MoviesViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.movie(at: 1).id, movie2.id)
     }
     
-    func testFetchMovieDetailSuccessIsResetFalse() {
-        testFetchMovieDetailSuccess()
+    func testFetchMoviesSuccessIsResetFalse() {
+        testFetchMoviesSuccess()
         
         viewModel.fetchMovies(isReset: false)
         XCTAssertEqual(viewModel.numberOfItems, 4)
     }
     
     func testFetchMovieDetailSuccessIsResetTrue() {
-        testFetchMovieDetailSuccess()
+        testFetchMoviesSuccess()
         
         viewModel.fetchMovies(isReset: true)
         XCTAssertEqual(viewModel.numberOfItems, 2)
@@ -56,5 +56,22 @@ class MoviesViewModelTests: XCTestCase {
         
         XCTAssertFalse(networkMock.isFetchMoviesSuccess)
     }
-
+    
+    func testRefreshDataSuccess() {
+        viewModel.currentPage = 999
+        viewModel.refreshData()
+        
+        XCTAssertEqual(viewModel.currentPage, 1)
+    }
+    
+    func testGetMovieSuccess() {
+        testFetchMoviesSuccess()
+        let movie = viewModel.movie(at: 0)
+        XCTAssertEqual(movie.id, movie1.id)
+    }
+    
+    func testGetNumberOfItems() {
+        viewModel.fetchMovies(isReset: true)
+        XCTAssertEqual(viewModel.numberOfItems, 2)
+    }
 }
