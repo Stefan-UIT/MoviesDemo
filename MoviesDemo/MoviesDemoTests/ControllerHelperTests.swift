@@ -1,5 +1,5 @@
 //
-//  MoviesDemoTests.swift
+//  ControllerHelperTests.swift
 //  MoviesDemoTests
 //
 //  Created by Trung Vo on 9/17/20.
@@ -9,26 +9,23 @@
 import XCTest
 @testable import MoviesDemo
 
-class MoviesDemoTests: XCTestCase {
+class ControllerHelperTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testSetRootViewSuccessful() {
+        let expectedController = UIViewController()
+        ControllerHelper.setToRootViewController(expectedController)
+        let rootViewController = ControllerHelper.window?.rootViewController
+        XCTAssertEqual(expectedController, rootViewController)
     }
 
 }
