@@ -31,7 +31,7 @@ enum SampleData {
                 let data = try Data(contentsOf: url)
                 return data
             } catch {
-                print("error:\(error)")
+                return Data()
             }
         }
         return Data()
