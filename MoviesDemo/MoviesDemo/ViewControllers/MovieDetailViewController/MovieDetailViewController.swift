@@ -50,7 +50,7 @@ final class MovieDetailViewController: UIViewController {
     
     private func presentBookingViewController() {
         guard let bookingVC = ControllerHelper.load(BookingViewController.self, fromStoryboard: Keys.main) else { return }
-        present(bookingVC, animated: true, completion: nil)
+        navigationController?.pushViewController(bookingVC, animated: true)
     }
     
     // MARK: - Actions

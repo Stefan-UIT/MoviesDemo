@@ -37,6 +37,7 @@
 		2E5F5FDD2513576000C757EC /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */; };
 		2E5F5FDF2513722E00C757EC /* UINavigationController+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDE2513722E00C757EC /* UINavigationController+Theme.swift */; };
 		2E5F5FE22513796700C757EC /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FE12513796700C757EC /* BookingViewController.swift */; };
+		2E5F5FE425137E1700C757EC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E5F5FE325137E1700C757EC /* WebKit.framework */; };
 		4AB868FCFD0053388890CFA9 /* Pods_MoviesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */; };
 		A7A1E8B27AAB226E9E75DAEE /* Pods_MoviesDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		2E5F5FDE2513722E00C757EC /* UINavigationController+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Theme.swift"; sourceTree = "<group>"; };
 		2E5F5FE12513796700C757EC /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
+		2E5F5FE325137E1700C757EC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BDE0EF4D42B5218D199CBC /* Pods-MoviesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDemo.release.xcconfig"; path = "Target Support Files/Pods-MoviesDemo/Pods-MoviesDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E5F5FE425137E1700C757EC /* WebKit.framework in Frameworks */,
 				4AB868FCFD0053388890CFA9 /* Pods_MoviesDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +325,7 @@
 		FCEFA2425C9B0524E58F03FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E5F5FE325137E1700C757EC /* WebKit.framework */,
 				4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */,
 				3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */,
 			);
