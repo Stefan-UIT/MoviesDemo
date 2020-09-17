@@ -41,12 +41,10 @@ final class MoviesViewModel: BaseViewModel {
         return movies[position]
     }
     
-    func shouldLoadMoreItems(atRow row: Int) -> Bool {
-        pagingCalculator.shouldLoadMoreItems(atRow: row, numberOfItimes: numberOfItems, isLastPageReached: isLastPageReached)
-    }
-    
     func loadMoreItemIfNeeded(atRow row: Int) {
-        if shouldLoadMoreItems(atRow: row) {
+        let shouldLoadMoreItems = pagingCalculator.shouldLoadMoreItems(atRow: row, numberOfItimes: numberOfItems, isLastPageReached: isLastPageReached)
+        
+        if shouldLoadMoreItems {
             delegate?.loadingMoreItems(in: self)
             fetchMovies()
         }
@@ -57,10 +55,16 @@ final class MoviesViewModel: BaseViewModel {
         fetchMovies(isReset: true)
     }
     
-    func resetPagingData() {
+    private func resetPagingData() {
         currentPage = 1
         isLastPageReached = false
         isFetchInProgress = false
+    }
+    
+    private func calculatingPaginationData(numberOfNewItems: Int) {
+        isLastPageReached = pagingCalculator.isLastPageReached(numberOfNewItems: numberOfNewItems, dataPerPage: Paths.movieDataPerPage)
+        currentPage = pagingCalculator.calculatingCurrentPage(currentPage, isLastPage: isLastPageReached)
+        
     }
     
     func fetchMovies(isReset: Bool = false) {
@@ -84,26 +88,8 @@ final class MoviesViewModel: BaseViewModel {
                                 }
                                 strongSelf.movies.append(contentsOf: responseData)
                                 
-                                strongSelf.calculateCurrentPageAndIsLastPageReached(numberOfNewData: responseData.count)
+                                strongSelf.calculatingPaginationData(numberOfNewItems: responseData.count)
                                 strongSelf.delegate?.didLoadDataSuccessfully(in: strongSelf)
         })
-    }
-    
-    // check if is the last page reach, so no need to load more
-    private func calculateCurrentPageAndIsLastPageReached(numberOfNewData: Int) {
-        isLastPageReached = numberOfNewData < Paths.dataPerPage
-        if !isLastPageReached {
-            currentPage += 1
-        }
-    }
-}
-
-// MARK: - Helpers
-struct PagingCalculator {
-    func shouldLoadMoreItems(atRow row: Int,
-                             numberOfItimes: Int,
-                             isLastPageReached: Bool) -> Bool {
-        let isLastRow =  (row == numberOfItimes - 1)
-        return isLastRow && !isLastPageReached
     }
 }

@@ -32,8 +32,9 @@ extension MovieService: TargetType {
         switch self {
         case .fetchMovies(let page, let sortBy):
             return [
-                sortBy.key : sortBy.value,
-                Keys.page: page]
+                sortBy.key: sortBy.value,
+                Keys.page: page
+            ]
         default:
             return [String: Any]()
         }
