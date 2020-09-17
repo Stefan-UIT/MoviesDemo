@@ -22,4 +22,5 @@ struct Texts {
     static let languages = "languages"
     static let duration = "duration"
     static let minutes = "minutes"
+    static let popularity = "popularity"
 }

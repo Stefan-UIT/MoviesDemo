@@ -31,23 +31,24 @@ extension MovieService: TargetType {
     var parameters: [String: Any] {
         switch self {
         case .fetchMovies(let page):
-            return [
-                Keys.page: page,
-                "api_key": "328c283cd27bd1877d9080ccb1604c91"
-            ]
-        case .fetchMovieDetail:
-            return [
-                "api_key": "328c283cd27bd1877d9080ccb1604c91"
-            ]
+            return [ Keys.page: page ]
+        default:
+            return [String: Any]()
+        }
+    }
+    
+    private var paramsWithAuth: [String: Any] {
+        return parameters.merging(authParams) { (current, _) -> Any in
+            current
         }
     }
     
     var task: Task {
         switch self {
         case .fetchMovies:
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            return .requestParameters(parameters: paramsWithAuth, encoding: URLEncoding.default)
         case .fetchMovieDetail:
-            return .requestParameters(parameters: parameters, encoding: URLEncoding.default)
+            return .requestParameters(parameters: paramsWithAuth, encoding: URLEncoding.default)
         }
     }
     

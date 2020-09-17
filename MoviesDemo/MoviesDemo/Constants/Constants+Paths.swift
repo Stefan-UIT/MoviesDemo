@@ -24,4 +24,5 @@ struct Keys {
     static let applicationJson = "application/json"
     static let main = "Main"
     static let page = "page"
+    static let apiKey = "api_key"
 }

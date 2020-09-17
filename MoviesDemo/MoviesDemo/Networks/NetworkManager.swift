@@ -41,11 +41,6 @@ struct JsonTranslationLayer: Translatable {
 }
 
 class NetworkManager: Networkable {
-    //    let authPlugin = AccessTokenPlugin { (_) -> String in
-    //        return appKeyChain.accessToken
-    //    }
-    
-    //    lazy var provider = MoyaProvider<MultiTarget>(plugins: [authPlugin])
     lazy var provider = MoyaProvider<MultiTarget>()
     let translationLayer: Translatable
     

@@ -9,7 +9,14 @@
 import Foundation
 import Moya
 
+public enum TheMovieDB {
+  static let apiKey = "328c283cd27bd1877d9080ccb1604c91"
+}
+
 extension TargetType {
+    var authParams: [String: Any] {
+        [ Keys.apiKey: TheMovieDB.apiKey]
+    }
     var baseURL: URL {
         return URL(string: AppGateways.baseApiUrl)!
     }
