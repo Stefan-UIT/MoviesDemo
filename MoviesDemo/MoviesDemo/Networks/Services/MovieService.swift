@@ -57,6 +57,11 @@ extension MovieService: TargetType {
     
     // For unit test
     var sampleData: Data {
-        return Data()
+        switch self {
+        case .fetchMovies:
+            return SampleData.movies.data
+        case .fetchMovieDetail:
+            return SampleData.movieDetail.data
+        }
     }
 }

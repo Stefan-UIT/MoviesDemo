@@ -25,7 +25,7 @@ extension MoviesViewModelDelegate {
 final class MoviesViewModel: BaseViewModel {
     private var movies = [Movie]()
     private var pagingCalculator = PagingCalculator()
-    private var currentPage = 1
+    internal var currentPage = 1
     private var isLastPageReached: Bool = false
     private var isFetchInProgress = false
     
