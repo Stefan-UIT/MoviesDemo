@@ -69,7 +69,8 @@ final class MoviesViewModel: BaseViewModel {
         delegate?.willLoadData(in: self)
         isFetchInProgress = true
         provider.fetchMovies(page: currentPage,
-                              completion: { [weak self] (responseData, error) in
+                             sortBy: .primaryReleaseDateAsc,
+                             completion: { [weak self] (responseData, error) in
                                 guard let strongSelf = self else { return }
                                 strongSelf.isFetchInProgress = false
                                 strongSelf.delegate?.didFinishFetchingData(in: strongSelf)

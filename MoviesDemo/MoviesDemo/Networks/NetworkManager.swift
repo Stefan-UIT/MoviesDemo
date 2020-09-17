@@ -52,8 +52,9 @@ class NetworkManager: Networkable {
 // MARK: - Movies Network Services
 extension NetworkManager {
     func fetchMovies(page: Int,
+                     sortBy: SortBy,
                      completion: @escaping ([Movie]?, Error?) -> Void) {
-        provider.request(MultiTarget(MovieService.fetchMovies(page: page)),
+        provider.request(MultiTarget(MovieService.fetchMovies(page: page, sortBy: sortBy)),
                          completion: { (response) in
                             switch response {
                             case .failure(let error):

@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum MovieService {
-    case fetchMovies(page: Int)
+    case fetchMovies(page: Int, sortBy: SortBy)
     case fetchMovieDetail(movieId: Int)
 }
 
@@ -30,8 +30,10 @@ extension MovieService: TargetType {
     
     var parameters: [String: Any] {
         switch self {
-        case .fetchMovies(let page):
-            return [ Keys.page: page]
+        case .fetchMovies(let page, let sortBy):
+            return [
+                sortBy.key : sortBy.value,
+                Keys.page: page]
         default:
             return [String: Any]()
         }

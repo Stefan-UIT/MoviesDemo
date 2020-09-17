@@ -12,6 +12,6 @@ import Moya
 protocol Networkable {
     var provider: MoyaProvider<MultiTarget> { get }
     
-    func fetchMovies(page: Int, completion: @escaping ([Movie]?, Error?) -> Void)
+    func fetchMovies(page: Int, sortBy:SortBy ,  completion: @escaping ([Movie]?, Error?) -> Void)
     func fetchMovieDetail(movieId: Int, completion: @escaping (Movie?, Error?) -> Void)
 }
