@@ -48,18 +48,18 @@ class MovieDetailViewModelTests: XCTestCase {
         let delegateMock = MovieDetailViewModelDelegateMock()
         viewModel.delegate = delegateMock
         
-        let expect = expectation(description: "Delegate calls the delegate as the result of an async method completion")
+        let expect = expectation(description: "Delegate get calling")
         delegateMock.asyncExpectation = expect
         
         viewModel.fetchMovieDetail()
         
-        waitForExpectations(timeout: 5) { error in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
-                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+                XCTFail("time out errored: \(error)")
             }
             
             guard let result = delegateMock.delegateAsyncResult else {
-                XCTFail("Expected delegate to be called")
+                XCTFail("Delegate not call")
                 return
             }
             
@@ -72,18 +72,18 @@ class MovieDetailViewModelTests: XCTestCase {
         let delegateMock = MovieDetailViewModelDelegateMock()
         viewModel.delegate = delegateMock
         
-        let expect = expectation(description: "Delegate calls the delegate as the result of an async method completion")
+        let expect = expectation(description: "Delegate get calling")
         delegateMock.asyncExpectation = expect
         
         viewModel.fetchMovieDetail()
         
-        waitForExpectations(timeout: 5) { error in
+        waitForExpectations(timeout: 2) { error in
             if let error = error {
-                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+                XCTFail("time out errored: \(error)")
             }
             
             guard let result = delegateMock.error else {
-                XCTFail("Expected delegate to be called")
+                XCTFail("Delegate not call")
                 return
             }
             

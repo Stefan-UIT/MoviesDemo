@@ -11,11 +11,11 @@ import XCTest
 class  MovieDetailViewModelDelegateMock: MovieDetailViewModelDelegate {
     var delegateAsyncResult: Bool? = .none
     var asyncExpectation: XCTestExpectation?
-    var error:Error?
+    var error: Error?
     
     func didLoadDataSuccessfully(in model: MovieDetailViewModel) {
         guard let expectation = asyncExpectation else {
-          XCTFail("Delegate was not setup correctly. Missing XCTExpectation reference")
+          XCTFail(Messages.delegateWasNotSetUpCorrect)
           return
         }
         delegateAsyncResult = true
@@ -24,7 +24,7 @@ class  MovieDetailViewModelDelegateMock: MovieDetailViewModelDelegate {
     }
     func movieDetailViewModel(_ model: MovieDetailViewModel, didFailWithError error: Error) {
         guard let expectation = asyncExpectation else {
-          XCTFail("Delegate was not setup correctly. Missing XCTExpectation reference")
+          XCTFail(Messages.delegateWasNotSetUpCorrect)
           return
         }
         self.error = error
