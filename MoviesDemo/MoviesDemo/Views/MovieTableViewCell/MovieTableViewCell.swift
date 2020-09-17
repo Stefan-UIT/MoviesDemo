@@ -21,10 +21,21 @@ final class MovieTableViewCell: UITableViewCell {
     // MARK: - Variables
     var movie: Movie!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // prevent re-use wrong image
+        cancelLoadingImage()
+    }
+    
     // MARK: - Methods
     func configureCell(movie: Movie) {
         self.movie = movie
         setupData(withMovie: movie)
+    }
+    
+    private func cancelLoadingImage() {
+        posterImageView.sd_cancelCurrentImageLoad()
+        posterImageView.image = Images.errorPoster
     }
     
     private func setupData(withMovie movie: Movie) {
@@ -35,7 +46,10 @@ final class MovieTableViewCell: UITableViewCell {
     }
     
     private func loadPosterImage(urlString: String?) {
-        guard let url = urlString, let imageURL = URL(string: url) else { return }
+        guard let url = urlString, let imageURL = URL(string: url) else {
+            posterImageView.image = Images.errorPoster
+            return
+        }
         posterImageView.sd_setImage(with: imageURL, placeholderImage: Images.placeholder, options: .progressiveLoad)
     }
 }

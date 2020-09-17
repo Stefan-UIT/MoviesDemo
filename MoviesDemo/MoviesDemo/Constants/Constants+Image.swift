@@ -10,4 +10,5 @@ import UIKit
 
 struct Images {
     static let placeholder = UIImage(named: "placeholder")
+    static let errorPoster = UIImage(named: "error_poster")
 }

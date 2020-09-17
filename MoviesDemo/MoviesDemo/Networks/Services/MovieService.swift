@@ -31,7 +31,7 @@ extension MovieService: TargetType {
     var parameters: [String: Any] {
         switch self {
         case .fetchMovies(let page):
-            return [ Keys.page: page ]
+            return [ Keys.page: page]
         default:
             return [String: Any]()
         }

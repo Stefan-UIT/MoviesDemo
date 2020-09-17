@@ -44,7 +44,10 @@ final class MovieDetailViewController: UIViewController {
         
         guard
             let urlString = viewModel.backdropUrl,
-            let backdropUrl = URL(string: urlString) else { return }
+            let backdropUrl = URL(string: urlString) else {
+                backdropImageView.image = Images.errorPoster
+                return
+        }
         backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: Images.placeholder, options: .progressiveLoad)
     }
     
