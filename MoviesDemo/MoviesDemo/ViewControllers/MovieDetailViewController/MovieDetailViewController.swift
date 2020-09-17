@@ -45,18 +45,14 @@ final class MovieDetailViewController: UIViewController {
             let backdropUrl = URL(string: urlString) else { return }
         backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: Images.placeholder, options: .progressiveLoad)
     }
+    
+    @IBAction func onBookMovieTouchUp(_ sender: UIButton) {
+    }
+    
 }
 
 // MARK: - MovieDetailViewModelDelegate
 extension MovieDetailViewController: MovieDetailViewModelDelegate {
-    func willLoadData(in model: MovieDetailViewModel) {
-        
-    }
-    
-    func didFinishFetchingData(in model: MovieDetailViewModel) {
-        //        dismissSpinningView()
-    }
-    
     func didLoadDataSuccessfully(in model: MovieDetailViewModel) {
         reloadData()
     }

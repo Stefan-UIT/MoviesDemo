@@ -56,6 +56,7 @@ extension MoviesListAdapter: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MoviesListAdapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         delegate.didSelectItem(at: indexPath)
     }
 }

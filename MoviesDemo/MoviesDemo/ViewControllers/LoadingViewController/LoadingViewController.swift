@@ -17,6 +17,10 @@ final class LoadingViewController: UIViewController {
         initViewModel()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Private Methods
     private func initViewModel() {
         viewModel.delegate = self
@@ -28,6 +32,7 @@ final class LoadingViewController: UIViewController {
         moviesVC.viewModel = viewModel
         viewModel.delegate = moviesVC
         let nav = UINavigationController(rootViewController: moviesVC)
+        nav.applyTheme()
         ControllerHelper.window?.rootViewController = nav
     }
 }

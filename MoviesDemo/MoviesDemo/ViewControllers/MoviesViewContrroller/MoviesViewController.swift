@@ -30,10 +30,6 @@ final class MoviesViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     private func redirectToMovieDetail(withMovie movie: Movie) {
         guard let movieDetailVC = ControllerHelper.load(MovieDetailViewController.self, fromStoryboard: Keys.main) else { return }
         let vModel = MovieDetailViewModel.init(movie: movie)
@@ -54,23 +50,21 @@ final class MoviesViewController: UIViewController {
     }
     
     private func setupUI() {
-        self.title = Texts.movies.uppercased()
+        self.title = Texts.discovery.capitalized
         setupTableView()
-        setupNavigationBar()
         setupRefreshControl()
     }
     
     private func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: Messages.pullToRefresh)
+        refreshControl.tintColor = UIColor.lightGray
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        let attributedTitle = NSAttributedString(string: Messages.pullToRefresh, attributes: attributes)
+        refreshControl.attributedTitle = attributedTitle
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
     
     // MARK: - Support Functions
-    private func setupNavigationBar() {
-        navigationController?.navigationBar.barStyle = .black
-    }
-    
     @objc private func refreshData() {
         viewModel.refreshData()
     }

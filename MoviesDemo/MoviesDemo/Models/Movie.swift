@@ -57,11 +57,13 @@ struct Movie: Decodable {
     }
     
     var popularityText: String {
-        return "\(popularity ?? 0.0)"
+        guard let popNumber = popularity else { return "" }
+        return "\(popNumber)"
     }
     
     var duration: String {
-        return "\(runtime ?? 0)"
+        guard let runtimeNumber = runtime else { return "" }
+        return "\(runtimeNumber)"
     }
     
     var generNames: String {

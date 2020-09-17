@@ -16,6 +16,10 @@ struct Messages {
 }
 
 struct Texts {
-    static let movies = "Movies"
-    static let dismiss = "Dismiss"
+    static let discovery = "discovery"
+    static let genres = "genres"
+    static let dismiss = "dismiss"
+    static let languages = "languages"
+    static let duration = "duration"
+    static let minutes = "minutes"
 }

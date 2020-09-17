@@ -10,15 +10,8 @@ import UIKit
 
 // MARK: - MovieDetailViewModelDelegate
 protocol MovieDetailViewModelDelegate: class {
-    func willLoadData(in model: MovieDetailViewModel)
-    func didFinishFetchingData(in model: MovieDetailViewModel)
     func didLoadDataSuccessfully(in model: MovieDetailViewModel)
     func movieDetailViewModel(_ model: MovieDetailViewModel, didFailWithError error: Error)
-}
-
-// MARK: - Optional MovieDetailViewModelDelegate
-extension MovieDetailViewModelDelegate {
-    func willLoadData(in model: MoviesViewModel) {}
 }
 
 // MARK: - MovieDetailViewModelDelegate
@@ -31,15 +24,15 @@ final class MovieDetailViewModel: BaseViewModel {
     }
     
     var genres: String {
-        movie.generNames
+        "\(Texts.genres.capitalized) : \(movie.generNames)"
     }
     
     var languages: String {
-        movie.spokenLanguageNames
+        "\(Texts.languages.capitalized) : \(movie.spokenLanguageNames)"
     }
     
     var duration: String {
-        movie.duration
+        "\(Texts.duration.capitalized) : \(movie.duration) \(Texts.minutes)"
     }
     
     var overview: String {
@@ -56,12 +49,9 @@ final class MovieDetailViewModel: BaseViewModel {
     }
     
     func fetchMovieDetail() {
-        delegate?.willLoadData(in: self)
         provider.fetchMovieDetail(movieId: movie.id,
                               completion: { [weak self] (responseData, error) in
                                 guard let strongSelf = self else { return }
-                                strongSelf.delegate?.didFinishFetchingData(in: strongSelf)
-                                
                                 guard let data = responseData else {
                                     strongSelf.delegate?.movieDetailViewModel(strongSelf, didFailWithError: error!)
                                     return
