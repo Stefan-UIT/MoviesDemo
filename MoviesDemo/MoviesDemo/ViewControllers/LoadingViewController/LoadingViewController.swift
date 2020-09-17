@@ -28,23 +28,21 @@ final class LoadingViewController: UIViewController {
     }
     
     private func redirectToMoviesViewController() {
-        guard let moviesVC = ControllerHelper.load(MoviesViewController.self, fromStoryboard: Keys.main) else { return }
+        let moviesVC = MoviesViewController.instantiate()
         moviesVC.viewModel = viewModel
         viewModel.delegate = moviesVC
         let nav = UINavigationController(rootViewController: moviesVC)
         nav.applyTheme()
-        ControllerHelper.window?.rootViewController = nav
+        ControllerHelper.setToRootViewController(nav)
     }
 }
 
 // MARK: - MoviesViewModelDelegate
 extension LoadingViewController: MoviesViewModelDelegate {
     func willLoadData(in model: MoviesViewModel) {
-        showSpinner(onView: view)
     }
     
     func didFinishFetchingData(in model: MoviesViewModel) {
-        removeSpinner()
     }
     
     func didLoadDataSuccessfully(in model: MoviesViewModel) {
@@ -52,7 +50,6 @@ extension LoadingViewController: MoviesViewModelDelegate {
     }
     
     func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error) {
-        removeSpinner()
         showAlert(message: Messages.couldNotGetMoviesData)
     }
 }

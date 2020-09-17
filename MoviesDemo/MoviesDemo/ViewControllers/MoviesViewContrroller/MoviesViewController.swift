@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MoviesViewController: UIViewController {
+final class MoviesViewController: BaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,11 +32,10 @@ final class MoviesViewController: UIViewController {
     
     // MARK: - Private Methods
     private func redirectToMovieDetail(withMovie movie: Movie) {
-        guard let movieDetailVC = ControllerHelper.load(MovieDetailViewController.self, fromStoryboard: Keys.main) else { return }
-        let vModel = MovieDetailViewModel.init(movie: movie)
-        movieDetailVC.viewModel = vModel
-        vModel.delegate = movieDetailVC
-        self.navigationController?.pushViewController(movieDetailVC, animated: true)
+        let movieDetailVC = MovieDetailViewController.instantiate()
+        movieDetailVC.viewModel = MovieDetailViewModel.init(movie: movie)
+        movieDetailVC.viewModel.delegate = movieDetailVC
+        navigationController?.pushViewController(movieDetailVC, animated: true)
     }
     
     private func initAdapter() {

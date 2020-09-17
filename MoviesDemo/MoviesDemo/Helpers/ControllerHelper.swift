@@ -13,15 +13,6 @@ class ControllerHelper {
         return UIApplication.shared.windows.first
     }
     
-    class func load<T>(_ type: T.Type, fromStoryboard storyboardName: String) -> T? where T: UIViewController {
-        let storyboard: UIStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
-        let identifier = String(describing: T.self)
-        guard let controller = storyboard.instantiateViewController(withIdentifier: identifier) as? T else {
-            return nil
-        }
-        return controller
-    }
-    
     class func setToRootViewController(_ controller: UIViewController) {
         guard let currentWindow = window else {
             return

@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class BookingViewController: UIViewController {
+final class BookingViewController: BaseViewController {
     @IBOutlet weak var webView: WKWebView!
     
     override func viewDidLoad() {

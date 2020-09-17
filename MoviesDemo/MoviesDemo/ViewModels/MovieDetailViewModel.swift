@@ -50,14 +50,14 @@ final class MovieDetailViewModel: BaseViewModel {
     
     func fetchMovieDetail() {
         provider.fetchMovieDetail(movieId: movie.id,
-                              completion: { [weak self] (responseData, error) in
-                                guard let strongSelf = self else { return }
-                                guard let data = responseData else {
-                                    strongSelf.delegate?.movieDetailViewModel(strongSelf, didFailWithError: error!)
-                                    return
-                                }
-                                strongSelf.movie = data
-                                strongSelf.delegate?.didLoadDataSuccessfully(in: strongSelf)
+                                  completion: { [weak self] (responseData, error) in
+                                    guard let strongSelf = self else { return }
+                                    guard let data = responseData else {
+                                        strongSelf.delegate?.movieDetailViewModel(strongSelf, didFailWithError: error!)
+                                        return
+                                    }
+                                    strongSelf.movie = data
+                                    strongSelf.delegate?.didLoadDataSuccessfully(in: strongSelf)
         })
     }
 }

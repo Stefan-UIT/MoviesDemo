@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import WebKit
 
-final class MovieDetailViewController: UIViewController {
+final class MovieDetailViewController: BaseViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
@@ -48,11 +48,11 @@ final class MovieDetailViewController: UIViewController {
                 backdropImageView.image = Images.errorPoster
                 return
         }
-        backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: Images.placeholder, options: .progressiveLoad)
+        backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: nil, options: .progressiveLoad)
     }
     
     private func presentBookingViewController() {
-        guard let bookingVC = ControllerHelper.load(BookingViewController.self, fromStoryboard: Keys.main) else { return }
+        let bookingVC = BookingViewController.instantiate()
         navigationController?.pushViewController(bookingVC, animated: true)
     }
     
