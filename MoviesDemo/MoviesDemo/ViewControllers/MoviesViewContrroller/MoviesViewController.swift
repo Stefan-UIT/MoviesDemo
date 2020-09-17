@@ -32,10 +32,7 @@ final class MoviesViewController: BaseViewController {
     
     // MARK: - Private Methods
     private func redirectToMovieDetail(withMovie movie: Movie) {
-        let movieDetailVC = MovieDetailViewController.instantiate()
-        movieDetailVC.viewModel = MovieDetailViewModel.init(movie: movie)
-        movieDetailVC.viewModel.delegate = movieDetailVC
-        navigationController?.pushViewController(movieDetailVC, animated: true)
+        coordinator?.pushToMovieDetail(withMovie: movie)
     }
     
     private func initAdapter() {

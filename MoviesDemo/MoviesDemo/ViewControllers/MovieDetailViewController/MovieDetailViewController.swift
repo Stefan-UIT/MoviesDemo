@@ -59,8 +59,7 @@ final class MovieDetailViewController: BaseViewController {
     }
     
     private func presentBookingViewController() {
-        let bookingVC = BookingViewController.instantiate()
-        navigationController?.pushViewController(bookingVC, animated: true)
+        coordinator?.pushToBookingVC()
     }
     
     // MARK: - Actions

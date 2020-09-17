@@ -33,6 +33,9 @@ final class LoadingViewController: UIViewController {
         viewModel.delegate = moviesVC
         let nav = UINavigationController(rootViewController: moviesVC)
         nav.applyTheme()
+        let coordinator = MainCoordinator(navigationController: nav)
+        moviesVC.coordinator = coordinator
+        
         ControllerHelper.setToRootViewController(nav)
     }
 }

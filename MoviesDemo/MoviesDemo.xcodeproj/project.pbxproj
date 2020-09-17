@@ -52,6 +52,8 @@
 		2E5F600E2513CFF400C757EC /* MoviesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F600D2513CFF400C757EC /* MoviesViewModelTests.swift */; };
 		2E5F60102513DC8400C757EC /* JsonTranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F600F2513DC8400C757EC /* JsonTranslationLayer.swift */; };
 		2E5F60122513DCEB00C757EC /* NetworkManager+MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F60112513DCEB00C757EC /* NetworkManager+MovieService.swift */; };
+		2E5F60162513E03300C757EC /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F60152513E03300C757EC /* Coordinator.swift */; };
+		2E5F60182513E04300C757EC /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F60172513E04300C757EC /* MainCoordinator.swift */; };
 		4AB868FCFD0053388890CFA9 /* Pods_MoviesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */; };
 		A7A1E8B27AAB226E9E75DAEE /* Pods_MoviesDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -117,6 +119,8 @@
 		2E5F600D2513CFF400C757EC /* MoviesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewModelTests.swift; sourceTree = "<group>"; };
 		2E5F600F2513DC8400C757EC /* JsonTranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTranslationLayer.swift; sourceTree = "<group>"; };
 		2E5F60112513DCEB00C757EC /* NetworkManager+MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkManager+MovieService.swift"; sourceTree = "<group>"; };
+		2E5F60152513E03300C757EC /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		2E5F60172513E04300C757EC /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BDE0EF4D42B5218D199CBC /* Pods-MoviesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDemo.release.xcconfig"; path = "Target Support Files/Pods-MoviesDemo/Pods-MoviesDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				2E5F5FBD25131F6F00C757EC /* Extensions */,
 				2E5F5FAC2513128E00C757EC /* Helpers */,
 				2E5F5FA5251311A100C757EC /* Constants */,
+				2E5F60142513E02000C757EC /* Coordinator */,
 				2E5F5FFC2513B8AB00C757EC /* SampleData */,
 				2E5F5F822513036C00C757EC /* Assets.xcassets */,
 				2E5F5F842513036C00C757EC /* LaunchScreen.storyboard */,
@@ -367,6 +372,15 @@
 				2E5F5FFE2513BA8800C757EC /* Movies.json */,
 			);
 			path = SampleData;
+			sourceTree = "<group>";
+		};
+		2E5F60142513E02000C757EC /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				2E5F60152513E03300C757EC /* Coordinator.swift */,
+				2E5F60172513E04300C757EC /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		659082AA18B2906CC20E8F75 /* Pods */ = {
@@ -587,8 +601,10 @@
 				2E5F5FAE251312BA00C757EC /* Networkable.swift in Sources */,
 				2E5F5FF92513ADBF00C757EC /* BaseUrlEnums.swift in Sources */,
 				2E5F5FB825131D6E00C757EC /* MoviesViewModel.swift in Sources */,
+				2E5F60182513E04300C757EC /* MainCoordinator.swift in Sources */,
 				2E5F5FC32513200800C757EC /* Constants+Paths.swift in Sources */,
 				2E5F5FD325132A1100C757EC /* LoadingViewController.swift in Sources */,
+				2E5F60162513E03300C757EC /* Coordinator.swift in Sources */,
 				2E5F5FD625132A2A00C757EC /* MoviesListAdapter.swift in Sources */,
 				2E5F5FE6251399DE00C757EC /* AdditionalQueryProtocol.swift in Sources */,
 				2E5F5FBA25131DB300C757EC /* BaseViewModel.swift in Sources */,
