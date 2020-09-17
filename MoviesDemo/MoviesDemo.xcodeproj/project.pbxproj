@@ -36,6 +36,7 @@
 		2E5F5FDB25133E1D00C757EC /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */; };
 		2E5F5FDD2513576000C757EC /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */; };
 		2E5F5FDF2513722E00C757EC /* UINavigationController+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FDE2513722E00C757EC /* UINavigationController+Theme.swift */; };
+		2E5F5FE22513796700C757EC /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5F5FE12513796700C757EC /* BookingViewController.swift */; };
 		4AB868FCFD0053388890CFA9 /* Pods_MoviesDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */; };
 		A7A1E8B27AAB226E9E75DAEE /* Pods_MoviesDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		2E5F5FDC2513576000C757EC /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		2E5F5FDE2513722E00C757EC /* UINavigationController+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Theme.swift"; sourceTree = "<group>"; };
+		2E5F5FE12513796700C757EC /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewController.swift; sourceTree = "<group>"; };
 		3FA0A813DE1FE5B2D4A6E224 /* Pods_MoviesDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B00910871D997665F700D51 /* Pods_MoviesDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviesDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BDE0EF4D42B5218D199CBC /* Pods-MoviesDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesDemo.release.xcconfig"; path = "Target Support Files/Pods-MoviesDemo/Pods-MoviesDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		2E5F5FA025130F3300C757EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E5F5FE02513795A00C757EC /* BookingViewController */,
 				2E5F5FD925133E0100C757EC /* MovieDetailViewController */,
 				2E5F5FCF25132A1100C757EC /* LoadingViewController */,
 				2E5F5FD125132A1100C757EC /* MoviesViewContrroller */,
@@ -295,6 +298,14 @@
 				2E5F5FDA25133E1D00C757EC /* MovieDetailViewController.swift */,
 			);
 			path = MovieDetailViewController;
+			sourceTree = "<group>";
+		};
+		2E5F5FE02513795A00C757EC /* BookingViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2E5F5FE12513796700C757EC /* BookingViewController.swift */,
+			);
+			path = BookingViewController;
 			sourceTree = "<group>";
 		};
 		659082AA18B2906CC20E8F75 /* Pods */ = {
@@ -517,6 +528,7 @@
 				2E5F5FC92513216400C757EC /* UITableView+Indicator.swift in Sources */,
 				2E5F5FB22513191E00C757EC /* MovieService.swift in Sources */,
 				2E5F5FA42513112100C757EC /* Movie.swift in Sources */,
+				2E5F5FE22513796700C757EC /* BookingViewController.swift in Sources */,
 				2E5F5FC52513204900C757EC /* Constants+Colors.swift in Sources */,
 				2E5F5FB42513195600C757EC /* BaseService.swift in Sources */,
 				2E5F5FD425132A1100C757EC /* MoviesViewController.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import WebKit
 
 final class MovieDetailViewController: UIViewController {
     // MARK: - IBOutlet
@@ -28,12 +29,13 @@ final class MovieDetailViewController: UIViewController {
         reloadData()
     }
     
+    // MARK: - Private Methods
     private func initViewModel() {
         viewModel.delegate = self
         viewModel.fetchMovieDetail()
     }
     
-    func reloadData() {
+    private func reloadData() {
         titleLabel.text = viewModel.title
         genresLabel.text = viewModel.genres
         languagesLabel.text = viewModel.languages
@@ -46,9 +48,15 @@ final class MovieDetailViewController: UIViewController {
         backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: Images.placeholder, options: .progressiveLoad)
     }
     
-    @IBAction func onBookMovieTouchUp(_ sender: UIButton) {
+    private func presentBookingViewController() {
+        guard let bookingVC = ControllerHelper.load(BookingViewController.self, fromStoryboard: Keys.main) else { return }
+        present(bookingVC, animated: true, completion: nil)
     }
     
+    // MARK: - Actions
+    @IBAction func onBookMovieTouchUp(_ sender: UIButton) {
+        presentBookingViewController()
+    }
 }
 
 // MARK: - MovieDetailViewModelDelegate

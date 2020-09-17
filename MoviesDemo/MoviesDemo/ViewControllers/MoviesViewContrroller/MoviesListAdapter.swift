@@ -17,7 +17,6 @@ protocol MoviesListProtocol {
 
 class MoviesListAdapter: NSObject {
     let delegate: MoviesListProtocol
-
     // MARK: - Constructor
     init(delegate: MoviesListProtocol) {
         self.delegate = delegate

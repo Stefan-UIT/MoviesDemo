@@ -9,7 +9,7 @@
 import UIKit
 
 final class MoviesViewController: UIViewController {
-    // MARK: - IBOutlet
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
@@ -30,6 +30,7 @@ final class MoviesViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    // MARK: - Private Methods
     private func redirectToMovieDetail(withMovie movie: Movie) {
         guard let movieDetailVC = ControllerHelper.load(MovieDetailViewController.self, fromStoryboard: Keys.main) else { return }
         let vModel = MovieDetailViewModel.init(movie: movie)
@@ -64,7 +65,6 @@ final class MoviesViewController: UIViewController {
         tableView.addSubview(refreshControl)
     }
     
-    // MARK: - Support Functions
     @objc private func refreshData() {
         viewModel.refreshData()
     }
@@ -82,7 +82,6 @@ final class MoviesViewController: UIViewController {
 // MARK: - MoviesViewModelDelegate
 extension MoviesViewController: MoviesViewModelDelegate {
     func willLoadData(in model: MoviesViewModel) {
-        
     }
     
     func didFinishFetchingData(in model: MoviesViewModel) {
