@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="177" id="KGk-i7-Jjw" customClass="MovieTableViewCell" customModule="MoviesDemo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="177"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="334" height="177"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugw-R9-Mbd">
+                        <rect key="frame" x="0.0" y="0.0" width="334" height="177"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vfx-yT-lgs">
+                                <rect key="frame" x="110.5" y="8" width="190.5" height="161"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upb-TL-hch">
+                                        <rect key="frame" x="0.0" y="0.0" width="190.5" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Wmb-hu-pDG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" name="steam_gold"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDT-gr-ZUo">
+                                        <rect key="frame" x="0.0" y="43" width="190.5" height="28.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label Label " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULT-ix-MPy">
+                                        <rect key="frame" x="0.0" y="79.5" width="190.5" height="81.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="XDT-gr-ZUo" firstAttribute="height" secondItem="upb-TL-hch" secondAttribute="height" multiplier="0.810127" id="V7F-FX-mBX"/>
+                                </constraints>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cca-dF-AZl">
+                                <rect key="frame" x="8" y="17.5" width="94.5" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cca-dF-AZl" secondAttribute="height" multiplier="2:3" id="Vpz-Df-5wD"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8RU-hl-kVb">
+                                <rect key="frame" x="305" y="78" width="25" height="21.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Ldy-jf-aLk"/>
+                                    <constraint firstAttribute="width" secondItem="8RU-hl-kVb" secondAttribute="height" multiplier="1:1" id="hrW-Xm-tBW"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cca-dF-AZl" firstAttribute="centerY" secondItem="Ugw-R9-Mbd" secondAttribute="centerY" id="DJE-1X-Auf"/>
+                            <constraint firstItem="vfx-yT-lgs" firstAttribute="top" secondItem="Ugw-R9-Mbd" secondAttribute="top" constant="8" id="DdG-GH-sug"/>
+                            <constraint firstAttribute="bottom" secondItem="vfx-yT-lgs" secondAttribute="bottom" constant="8" id="KEd-47-BPD"/>
+                            <constraint firstItem="cca-dF-AZl" firstAttribute="leading" secondItem="Ugw-R9-Mbd" secondAttribute="leading" constant="8" id="hND-F6-oPl"/>
+                            <constraint firstItem="8RU-hl-kVb" firstAttribute="leading" secondItem="vfx-yT-lgs" secondAttribute="trailing" constant="4" id="hn6-vd-lxX"/>
+                            <constraint firstItem="vfx-yT-lgs" firstAttribute="leading" secondItem="cca-dF-AZl" secondAttribute="trailing" constant="8" id="rQx-yz-ctR"/>
+                            <constraint firstAttribute="trailing" secondItem="8RU-hl-kVb" secondAttribute="trailing" constant="4" id="xUk-mh-g6H"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Ugw-R9-Mbd" secondAttribute="bottom" id="3Mw-oB-iTV"/>
+                    <constraint firstItem="cca-dF-AZl" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="7lO-T8-odv"/>
+                    <constraint firstItem="Ugw-R9-Mbd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="98V-A5-UlC"/>
+                    <constraint firstItem="Ugw-R9-Mbd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="LzX-Ge-t3d"/>
+                    <constraint firstAttribute="trailing" secondItem="Ugw-R9-Mbd" secondAttribute="trailing" id="Nda-4J-0NP"/>
+                    <constraint firstItem="8RU-hl-kVb" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xUs-cc-XqI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="ULT-ix-MPy" id="D0a-D8-PYR"/>
+                <outlet property="popularityLabel" destination="XDT-gr-ZUo" id="MSG-YB-PvW"/>
+                <outlet property="posterImageView" destination="cca-dF-AZl" id="SHV-Ue-vYm"/>
+                <outlet property="titleLabel" destination="upb-TL-hch" id="JJq-iE-eim"/>
+            </connections>
+            <point key="canvasLocation" x="147.82608695652175" y="201.22767857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <namedColor name="steam_gold">
+            <color red="0.7803921568627451" green="0.6470588235294118" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
