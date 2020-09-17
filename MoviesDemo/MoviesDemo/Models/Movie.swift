@@ -8,32 +8,12 @@
 
 import Foundation
 
-enum BasePosterUrl: String {
-    case w92
-    case w185
-    case w300
-    case original
-    
-    var baseURL: String {
-        AppGateways.baseImageUrl + rawValue
-    }
-}
-
-enum BaseBackdropUrl: String {
-    case w300
-    case w780
-    case original
-    
-    var baseURL: String {
-        AppGateways.baseImageUrl + rawValue
-    }
-}
-
 struct GeneralListResponse<T: Decodable>: Decodable {
     var page: Int
     var results: T?
 }
 
+// swiftlint:disable identifier_name
 struct Movie: Decodable {
     private (set) var popularity: Double?
     private (set) var posterPath: String?

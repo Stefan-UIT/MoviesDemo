@@ -39,9 +39,6 @@ final class LoadingViewController: UIViewController {
 
 // MARK: - MoviesViewModelDelegate
 extension LoadingViewController: MoviesViewModelDelegate {
-    func willLoadData(in model: MoviesViewModel) {
-    }
-    
     func didFinishFetchingData(in model: MoviesViewModel) {
     }
     
@@ -53,4 +50,3 @@ extension LoadingViewController: MoviesViewModelDelegate {
         showAlert(message: Messages.couldNotGetMoviesData)
     }
 }
-

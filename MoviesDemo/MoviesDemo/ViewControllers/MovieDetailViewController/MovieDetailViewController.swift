@@ -36,12 +36,19 @@ final class MovieDetailViewController: BaseViewController {
     }
     
     private func reloadData() {
+        setupUI()
+        loadBackdropImage()
+    }
+    
+    private func setupUI() {
         titleLabel.text = viewModel.title
         genresLabel.text = viewModel.genres
         languagesLabel.text = viewModel.languages
         durationLabel.text = viewModel.duration
         overviewLabel.text = viewModel.overview
-        
+    }
+    
+    private func loadBackdropImage() {
         guard
             let urlString = viewModel.backdropUrl,
             let backdropUrl = URL(string: urlString) else {

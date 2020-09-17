@@ -10,7 +10,6 @@ import Foundation
 
 // MARK: - MoviesViewModelDelegate
 protocol MoviesViewModelDelegate: class {
-    func willLoadData(in model: MoviesViewModel)
     func didFinishFetchingData(in model: MoviesViewModel)
     func didLoadDataSuccessfully(in model: MoviesViewModel)
     func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error)
@@ -19,7 +18,6 @@ protocol MoviesViewModelDelegate: class {
 
 // MARK: - Optional MoviesViewModelDelegate
 extension MoviesViewModelDelegate {
-    func willLoadData(in model: MoviesViewModel) {}
     func loadingMoreItems(in model: MoviesViewModel) {}
 }
 
@@ -70,7 +68,6 @@ final class MoviesViewModel: BaseViewModel {
     func fetchMovies(isReset: Bool = false) {
         guard !isFetchInProgress else { return }
         
-        delegate?.willLoadData(in: self)
         isFetchInProgress = true
         provider.fetchMovies(page: currentPage,
                              sortBy: .releaseDateAsc,

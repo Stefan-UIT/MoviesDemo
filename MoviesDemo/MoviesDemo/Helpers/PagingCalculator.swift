@@ -21,7 +21,7 @@ struct PagingCalculator {
         return numberOfNewItems < dataPerPage
     }
     
-    func calculatingCurrentPage(_ currentPage:Int, isLastPage: Bool) -> Int {
+    func calculatingCurrentPage(_ currentPage: Int, isLastPage: Bool) -> Int {
         return isLastPage ? currentPage : currentPage + 1
     }
 }

@@ -17,6 +17,7 @@ struct Paths {
     static let fetchMovies = "/discover/movie"
     static let fetchMovieDetail = "/movie/%d"
     static let movieDataPerPage = 20
+    static let cathayCineHomePage = "https://www.cathaycineplexes.com.sg/"
 }
 
 struct Keys {

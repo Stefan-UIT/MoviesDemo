@@ -15,6 +15,7 @@ protocol MoviesListProtocol {
     func retrieveNumberOfItems() -> Int
 }
 
+// swiftlint:disable weak_delegate
 class MoviesListAdapter: NSObject {
     let delegate: MoviesListProtocol
     // MARK: - Constructor

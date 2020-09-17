@@ -80,9 +80,6 @@ final class MoviesViewController: BaseViewController {
 
 // MARK: - MoviesViewModelDelegate
 extension MoviesViewController: MoviesViewModelDelegate {
-    func willLoadData(in model: MoviesViewModel) {
-    }
-    
     func didFinishFetchingData(in model: MoviesViewModel) {
         dismissSpinningView()
     }

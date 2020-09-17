@@ -14,7 +14,7 @@ final class BookingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let myURL = URL(string:"https://www.cathaycineplexes.com.sg/") else { return }
+        guard let myURL = URL(string: Paths.cathayCineHomePage) else { return }
         let myRequest = URLRequest(url: myURL)
         webView.load(myRequest)
     }
