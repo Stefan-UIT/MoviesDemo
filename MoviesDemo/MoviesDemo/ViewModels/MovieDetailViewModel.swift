@@ -39,8 +39,8 @@ final class MovieDetailViewModel: BaseMovieViewModel {
         movie.overview
     }
     
-    var backdropUrl: String? {
-        movie.backdropUrl
+    var backdropUrl: URL? {
+        movie.backdropUrl()
     }
     
     init(movie: Movie, provider: MovieNetworkable = MovieService()) {

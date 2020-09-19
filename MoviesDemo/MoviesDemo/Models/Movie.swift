@@ -15,25 +15,24 @@ struct GeneralListResponse<T: Decodable>: Decodable {
 
 // swiftlint:disable identifier_name
 struct Movie: Decodable {
-    private var popularity: Double?
-    private var posterPath: String?
-    private var backdropPath: String?
-    private var runtime: Int?
-    private var genres: [Genre]?
-    private var spokenLanguages: [SpokenLanguage]?
-    
     var id: Int
     var title: String = ""
     var overview: String = ""
+    var popularity: Double?
+    var posterPath: String?
+    var backdropPath: String?
+    var runtime: Int?
+    var genres: [Genre]?
+    var spokenLanguages: [SpokenLanguage]?
     
-    var posterUrl: String? {
+    func posterUrl(basePosterUrl: BasePosterUrl = .w300) -> URL? {
         guard let path = posterPath else { return nil }
-        return BasePosterUrl.w300.baseURL + path
+        return URL(string: basePosterUrl.baseURL + path)
     }
     
-    var backdropUrl: String? {
+    func backdropUrl(baseBackdropUrl: BaseBackdropUrl = .w780) -> URL? {
         guard let path = backdropPath else { return nil }
-        return BaseBackdropUrl.w780.baseURL + path
+        return URL(string: baseBackdropUrl.baseURL + path)
     }
     
     var popularityText: String {
@@ -62,10 +61,6 @@ struct Movie: Decodable {
     
     var spokenLanguageNamesWithDash: String {
         spokenLanguageNames.joined(separator: Separators.dashWithSpace)
-    }
-    
-    init(id: Int) {
-        self.id = id
     }
 }
 

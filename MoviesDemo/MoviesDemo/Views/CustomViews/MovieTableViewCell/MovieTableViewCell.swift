@@ -42,11 +42,11 @@ final class MovieTableViewCell: UITableViewCell {
         titleLabel.text = movie.title
         popularityLabel.text = movie.popularityText
         descriptionLabel.text = movie.overview
-        loadPosterImage(urlString: movie.posterUrl)
+        loadPosterImage(url: movie.posterUrl())
     }
     
-    private func loadPosterImage(urlString: String?) {
-        guard let url = urlString, let imageURL = URL(string: url) else {
+    private func loadPosterImage(url: URL?) {
+        guard let imageURL = url else {
             posterImageView.image = Images.errorPoster
             return
         }

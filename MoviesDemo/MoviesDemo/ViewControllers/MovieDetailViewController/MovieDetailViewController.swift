@@ -50,8 +50,7 @@ final class MovieDetailViewController: BaseViewController {
     
     private func loadBackdropImage() {
         guard
-            let urlString = viewModel.backdropUrl,
-            let backdropUrl = URL(string: urlString) else {
+            let backdropUrl = viewModel.backdropUrl else {
                 backdropImageView.image = Images.errorPoster
                 return
         }
