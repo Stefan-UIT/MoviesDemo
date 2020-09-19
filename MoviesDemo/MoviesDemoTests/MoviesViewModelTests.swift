@@ -13,11 +13,11 @@ import XCTest
 
 class MoviesViewModelTests: XCTestCase {
     var viewModel: MoviesViewModel!
-    var networkMock: NetworkableMock!
+    var networkMock: MovieNetworkableMock!
     
     override func setUpWithError() throws {
         super.setUp()
-        networkMock = NetworkableMock()
+        networkMock = MovieNetworkableMock()
         viewModel = MoviesViewModel(provider: networkMock)
     }
 

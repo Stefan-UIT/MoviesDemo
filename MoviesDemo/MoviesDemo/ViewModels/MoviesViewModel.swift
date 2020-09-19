@@ -22,7 +22,7 @@ extension MoviesViewModelDelegate {
 }
 
 // MARK: - MoviesViewModel
-final class MoviesViewModel: BaseViewModel {
+final class MoviesViewModel: BaseMovieViewModel {
     private var movies = [Movie]()
     private var pagingCalculator = PagingCalculator()
     internal var currentPage = 1

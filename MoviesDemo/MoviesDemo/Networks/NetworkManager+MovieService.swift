@@ -10,11 +10,11 @@ import Foundation
 import Moya
 
 // MARK: - Movies Network Services
-extension NetworkManager {
+extension MovieService {
     func fetchMovies(page: Int,
                      sortBy: SortBy,
                      completion: @escaping ([Movie]?, Error?) -> Void) {
-        provider.request(MultiTarget(MovieService.fetchMovies(page: page, sortBy: sortBy)),
+        provider.request(MovieTarget.fetchMovies(page: page, sortBy: sortBy),
                          completion: { (response) in
                             switch response {
                             case .failure(let error):
@@ -32,7 +32,7 @@ extension NetworkManager {
     
     func fetchMovieDetail(movieId: Int,
                           completion: @escaping (Movie?, Error?) -> Void) {
-        provider.request(MultiTarget(MovieService.fetchMovieDetail(movieId: movieId)),
+        provider.request(MovieTarget.fetchMovieDetail(movieId: movieId),
                          completion: { (response) in
                             switch response {
                             case .failure(let error):

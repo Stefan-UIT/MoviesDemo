@@ -11,14 +11,13 @@ import XCTest
 @testable import MoviesDemo
 @testable import Moya
 
-
 class MovieDetailViewModelTests: XCTestCase {
     var viewModel: MovieDetailViewModel!
-    var networkMock: NetworkableMock!
+    var networkMock: MovieNetworkableMock!
     
     override func setUpWithError() throws {
         super.setUp()
-        networkMock = NetworkableMock()
+        networkMock = MovieNetworkableMock()
     }
     
     override func tearDownWithError() throws {
@@ -28,8 +27,7 @@ class MovieDetailViewModelTests: XCTestCase {
     }
     
     func testFetchMovieDetailSuccess() {
-        let movie = Movie(id: realMovieID)
-        viewModel = MovieDetailViewModel(movie: movie, provider: networkMock)
+        viewModel = MovieDetailViewModel(movie: realMovie, provider: networkMock)
         
         viewModel.fetchMovieDetail()
         XCTAssertTrue(networkMock.isFetchMovieDetailSuccess)

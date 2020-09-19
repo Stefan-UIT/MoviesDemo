@@ -15,12 +15,12 @@ struct GeneralListResponse<T: Decodable>: Decodable {
 
 // swiftlint:disable identifier_name
 struct Movie: Decodable {
-    private (set) var popularity: Double?
-    private (set) var posterPath: String?
-    private (set) var backdropPath: String?
-    private (set) var runtime: Int?
-    private (set) var genres: [Genre]?
-    private (set) var spokenLanguages: [SpokenLanguage]?
+    private var popularity: Double?
+    private var posterPath: String?
+    private var backdropPath: String?
+    private var runtime: Int?
+    private var genres: [Genre]?
+    private var spokenLanguages: [SpokenLanguage]?
     
     var id: Int
     var title: String = ""
@@ -46,17 +46,26 @@ struct Movie: Decodable {
         return "\(runtimeNumber)"
     }
     
-    var generNames: String {
-        guard let array = genres, !array.isEmpty else { return "" }
-        let names = array.map({ $0.name })
-        return names.joined(separator: " - ")
-
+    var generNames: [String] {
+        guard let array = genres, !array.isEmpty else { return [String]() }
+        return array.map({ $0.name })
     }
     
-    var spokenLanguageNames: String {
-        guard let array = spokenLanguages, !array.isEmpty else { return "" }
-        let names = array.map({ $0.name })
-        return names.joined(separator: " - ")
+    var generNamesWithDash: String {
+        generNames.joined(separator: Separators.dashWithSpace)
+    }
+    
+    var spokenLanguageNames: [String] {
+        guard let array = spokenLanguages, !array.isEmpty else { return [String]() }
+        return array.map({ $0.name })
+    }
+    
+    var spokenLanguageNamesWithDash: String {
+        spokenLanguageNames.joined(separator: Separators.dashWithSpace)
+    }
+    
+    init(id: Int) {
+        self.id = id
     }
 }
 

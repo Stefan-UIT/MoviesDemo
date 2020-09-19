@@ -9,12 +9,12 @@
 import Foundation
 import Moya
 
-enum MovieService {
+enum MovieTarget {
     case fetchMovies(page: Int, sortBy: SortBy)
     case fetchMovieDetail(movieId: Int)
 }
 
-extension MovieService: TargetType {
+extension MovieTarget: TargetType {
     var path: String {
         switch self {
         case .fetchMovies:

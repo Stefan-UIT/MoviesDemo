@@ -24,3 +24,8 @@ struct Texts {
     static let minutes = "minutes"
     static let popularity = "popularity"
 }
+
+struct Separators {
+    static let dashWithSpace = " \(dash) "
+    static let dash = "-"
+}

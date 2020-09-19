@@ -8,10 +8,10 @@
 
 import Foundation
 
-class BaseViewModel {
-    var provider: Networkable!
+class BaseMovieViewModel {
+    var provider: MovieNetworkable!
     
-    init(provider: Networkable = NetworkManager()) {
+    init(provider: MovieNetworkable = MovieService()) {
         self.provider = provider
     }
 }

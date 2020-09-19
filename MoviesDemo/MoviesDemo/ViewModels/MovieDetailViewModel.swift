@@ -15,7 +15,7 @@ protocol MovieDetailViewModelDelegate: class {
 }
 
 // MARK: - MovieDetailViewModelDelegate
-final class MovieDetailViewModel: BaseViewModel {
+final class MovieDetailViewModel: BaseMovieViewModel {
     private var movie: Movie!
     weak var delegate: MovieDetailViewModelDelegate?
     
@@ -24,11 +24,11 @@ final class MovieDetailViewModel: BaseViewModel {
     }
     
     var genres: String {
-        "\(Texts.genres.capitalized) : \(movie.generNames)"
+        return "\(Texts.genres.capitalized) : \(movie.generNamesWithDash)"
     }
     
     var languages: String {
-        "\(Texts.languages.capitalized) : \(movie.spokenLanguageNames)"
+        return "\(Texts.languages.capitalized) : \(movie.spokenLanguageNamesWithDash)"
     }
     
     var duration: String {
@@ -43,7 +43,7 @@ final class MovieDetailViewModel: BaseViewModel {
         movie.backdropUrl
     }
     
-    init(movie: Movie, provider: Networkable = NetworkManager()) {
+    init(movie: Movie, provider: MovieNetworkable = MovieService()) {
         super.init(provider: provider)
         self.movie = movie
     }

@@ -15,8 +15,8 @@ let expectedError = NSError(domain: "domain", code: 404, userInfo: nil)
 let movie1 = Movie(id: 1)
 let movie2 = Movie(id: 2)
 
-class NetworkableMock: Networkable {
-    var provider = MoyaProvider<MultiTarget>()
+class MovieNetworkableMock: MovieNetworkable {
+    var provider = MoyaProvider<MovieTarget>()
     
     var isFetchMovieDetailSuccess: Bool!
     var isFetchMoviesSuccess: Bool!
