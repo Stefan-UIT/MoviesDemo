@@ -9,7 +9,16 @@
 import Foundation
 
 // MARK: - PagingCalculator
-struct PagingCalculator {
+
+protocol PagingCalculable {
+    func shouldLoadMoreItems(atRow row: Int,
+                             numberOfItimes: Int,
+                             isLastPageReached: Bool) -> Bool
+    func isLastPageReached(numberOfNewItems: Int, dataPerPage: Int) -> Bool
+    func calculatingCurrentPage(_ currentPage: Int, isLastPage: Bool) -> Int
+}
+
+struct PagingCalculator: PagingCalculable {
     func shouldLoadMoreItems(atRow row: Int,
                              numberOfItimes: Int,
                              isLastPageReached: Bool) -> Bool {

@@ -11,7 +11,7 @@ import XCTest
 
 class MovieModelTests: XCTestCase {
     var movie: Movie!
-    let invalidPath = "Invalid path"
+
     override func setUpWithError() throws {
         super.setUp()
         movie = Movie(id: 1)
@@ -27,7 +27,7 @@ class MovieModelTests: XCTestCase {
     }
     
     func testInvalidPosterURL() {
-        movie.posterPath = invalidPath
+        movie.posterPath = TMessages.invalidPath
         XCTAssertNil(movie.posterUrl())
     }
     
@@ -46,7 +46,7 @@ class MovieModelTests: XCTestCase {
     }
     
     func testInvalidBackdropURL() {
-        movie.backdropPath = invalidPath
+        movie.backdropPath = TMessages.invalidPath
         XCTAssertNil(movie.backdropUrl())
     }
     

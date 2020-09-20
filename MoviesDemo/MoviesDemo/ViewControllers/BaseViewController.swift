@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    weak var coordinator: MainCoordinator?
+    var coordinator: MainCoordinator?
 }
 
 // MARK: - Storyboarded

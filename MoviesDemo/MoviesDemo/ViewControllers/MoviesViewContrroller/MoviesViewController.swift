@@ -13,7 +13,6 @@ final class MoviesViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
-    var movies = [Movie]()
     private var viewModel: MoviesViewModel!
     private var refreshControl: UIRefreshControl!
     private var adapter: MoviesListAdapter!
@@ -34,11 +33,9 @@ final class MoviesViewController: BaseViewController {
     }
     
     private func initViewModel() {
-        viewModel = MoviesViewModel(movies: movies)
+        viewModel = MoviesViewModel()
         viewModel.delegate = self
-        if movies.isEmpty {
-            viewModel.fetchMovies()
-        }
+        viewModel.fetchMovies()
     }
     
     private func setupUI() {
@@ -47,7 +44,6 @@ final class MoviesViewController: BaseViewController {
         setupRefreshControl()
     }
     
-    // move to static func and func addToTableView(tableView:UITableView)
     private func setupRefreshControl() {
         refreshControl = UIRefreshControl.appRefreshControl(target: self, selector: #selector(refreshData), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -69,19 +65,19 @@ final class MoviesViewController: BaseViewController {
 
 // MARK: - MoviesViewModelDelegate
 extension MoviesViewController: MoviesViewModelDelegate {
-    func didFinishFetchingData(in model: MoviesViewModel) {
+    func didFinishFetchingData(in viewModel: MoviesViewModel) {
         dismissSpinningView()
     }
     
-    func didLoadDataSuccessfully(in model: MoviesViewModel) {
+    func didLoadDataSuccessfully(in viewModel: MoviesViewModel) {
         tableView.reloadData()
     }
     
-    func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error) {
+    func moviesViewModel(_ viewModel: MoviesViewModel, didFailWithError error: Error) {
         showAlert(message: Messages.couldNotGetMoviesData)
     }
     
-    func loadingMoreItems(in model: MoviesViewModel) {
+    func loadingMoreItems(in viewModel: MoviesViewModel) {
         tableView.addFooterLoading()
     }
 }
@@ -103,21 +99,5 @@ extension MoviesViewController: MoviesListProtocol {
     
     func retrieveNumberOfItems() -> Int {
         viewModel.numberOfItems
-    }
-}
-
-extension UIRefreshControl {
-    static func appRefreshControl(target: UIViewController,
-                                  title: String = Messages.pullToRefresh,
-                                  selector: Selector,
-                                  for event: UIControl.Event = .valueChanged) -> UIRefreshControl {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor.lightGray
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
-        refreshControl.attributedTitle = attributedTitle
-        refreshControl.addTarget(target, action: selector, for: event)
-        
-        return refreshControl
     }
 }

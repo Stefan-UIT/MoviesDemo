@@ -12,7 +12,8 @@ import XCTest
 @testable import Moya
 
 class MovieTargetTests: XCTestCase {
-
+    var sut: MovieService!
+    let translationLayer = JsonTranslationLayer()
     override func setUpWithError() throws {
         super.setUp()
     }
@@ -20,8 +21,8 @@ class MovieTargetTests: XCTestCase {
     override func tearDownWithError() throws {
         super.tearDown()
     }
-
-    func testFetchMoviesSuccess() {
+    
+    func testFetchMoviesSuccess() throws {
         let customEndpointClosure = { (target: MovieTarget) -> Endpoint in
             return Endpoint(url: URL(target: target).absoluteString,
                             sampleResponseClosure: { .networkResponse(200, target.sampleData) },
@@ -30,41 +31,33 @@ class MovieTargetTests: XCTestCase {
                             httpHeaderFields: target.headers)
         }
         let stubbingProvider = MoyaProvider<MovieTarget>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        sut = MovieService(networkTranslationLayer: JsonTranslationLayer(), provider: stubbingProvider)
         
-        stubbingProvider.request(.fetchMovies(page: 1, sortBy: .releaseDateAsc)) { (response) in
-            switch response {
-            case .failure(_):
-                XCTFail("Error")
-            case .success(let response):
-                let expectedData = MovieTarget.fetchMovies(page: 1, sortBy: .releaseDateAsc).sampleData
-                XCTAssertEqual(response.data, expectedData)
+        sut.fetchMovies(page: 1, sortBy: .primaryReleaseDateAsc) { (movies, error) in
+            XCTAssertNil(error)
+            guard let strongMovies = movies else {
+                XCTFail(TMessages.error)
+                return
             }
+            XCTAssertEqual(strongMovies.count, 2)
         }
     }
-    
+
     func testFetchMoviesFailed() {
-        let expectedError = NSError(domain: "domain", code: 404, userInfo: nil)
-        
         let customEndpointClosure = { (target: MovieTarget) -> Endpoint in
             return Endpoint(url: URL(target: target).absoluteString,
-                            sampleResponseClosure: { .networkError(expectedError) },
+                            sampleResponseClosure: { .networkError(TConstants.expectedError) },
                             method: target.method,
                             task: target.task,
                             httpHeaderFields: target.headers)
         }
         let stubbingProvider = MoyaProvider<MovieTarget>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         
-        stubbingProvider.request(.fetchMovies(page: -1, sortBy: .releaseDateAsc)) { (response) in
-            switch response {
-            case .failure(let error):
-                guard let nsError = error.underlyingError as NSError? else {
-                    XCTFail("Wrong Error")
-                    return
-                }
-                XCTAssertEqual(nsError.code, expectedError.code)
-            case .success(_):
-                XCTFail("the request should be failed")
-            }
+        sut = MovieService(networkTranslationLayer: JsonTranslationLayer(), provider: stubbingProvider)
+        
+        sut.fetchMovies(page: 1, sortBy: .primaryReleaseDateAsc) { (movies, error) in
+            XCTAssertNil(movies)
+            XCTAssertNotNil(error)
         }
     }
     
@@ -78,40 +71,34 @@ class MovieTargetTests: XCTestCase {
         }
         let stubbingProvider = MoyaProvider<MovieTarget>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         
-        stubbingProvider.request(.fetchMovieDetail(movieId: 315946)) { (response) in
-            switch response {
-            case .failure(_):
-                XCTFail("Error")
-            case .success(let response):
-                let expectedData = MovieTarget.fetchMovieDetail(movieId: 315946).sampleData
-                XCTAssertEqual(response.data, expectedData)
+        sut = MovieService(networkTranslationLayer: JsonTranslationLayer(), provider: stubbingProvider)
+        
+        let movieID = 315946
+        sut.fetchMovieDetail(movieId: movieID) { (movie, error) in
+            XCTAssertNil(error)
+            guard let strMovie = movie else {
+                    XCTFail(TMessages.error)
+                    return
             }
+            XCTAssertEqual(strMovie.id, movieID)
         }
     }
     
     func testFetchMovieDetailFailed() {
-        let expectedError = NSError(domain: "domain", code: 404, userInfo: nil)
-        
         let customEndpointClosure = { (target: MovieTarget) -> Endpoint in
             return Endpoint(url: URL(target: target).absoluteString,
-                            sampleResponseClosure: { .networkError(expectedError) },
+                            sampleResponseClosure: { .networkError(TConstants.expectedError) },
                             method: target.method,
                             task: target.task,
                             httpHeaderFields: target.headers)
         }
         let stubbingProvider = MoyaProvider<MovieTarget>(endpointClosure: customEndpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         
-        stubbingProvider.request(.fetchMovieDetail(movieId: -123)) { (response) in
-            switch response {
-            case .failure(let error):
-                guard let nsError = error.underlyingError as NSError? else {
-                    XCTFail("Wrong Error")
-                    return
-                }
-                XCTAssertEqual(nsError.code, expectedError.code)
-            case .success(_):
-                XCTFail("the request should be failed")
-            }
+        sut = MovieService(networkTranslationLayer: JsonTranslationLayer(), provider: stubbingProvider)
+        
+        sut.fetchMovieDetail(movieId: -123) { (movie, error) in
+            XCTAssertNil(movie)
+            XCTAssertNotNil(error)
         }
     }
 }

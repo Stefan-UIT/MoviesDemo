@@ -10,11 +10,13 @@ import Foundation
 import Moya
 
 class MovieService: MovieNetworkable {
-    lazy var provider = MoyaProvider<MovieTarget>()
+    var provider = MoyaProvider<MovieTarget>()
     let translationLayer: Translatable
     
-    init(networkTranslationLayer: Translatable = JsonTranslationLayer()) {
-        translationLayer = networkTranslationLayer
+    init(networkTranslationLayer: Translatable = JsonTranslationLayer(),
+         provider: MoyaProvider<MovieTarget> = MoyaProvider<MovieTarget>()) {
+        self.translationLayer = networkTranslationLayer
+        self.provider = provider
     }
 }
 

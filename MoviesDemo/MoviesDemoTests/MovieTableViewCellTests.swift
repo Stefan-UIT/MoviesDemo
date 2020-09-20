@@ -9,10 +9,6 @@
 import XCTest
 @testable import MoviesDemo
 
-struct Test {
-    static let movie1 = Movie(id: 1, title: "movie 1", overview: "overview 1", popularity: 1.1)
-}
-
 class MovieTableViewCellTests: XCTestCase {
     var sut: MovieTableViewCell!
 
@@ -28,8 +24,13 @@ class MovieTableViewCellTests: XCTestCase {
     }
     
     func testConfigureCellSuccess() {
-        sut.configureCell(movie: Test.movie1)
-        XCTAssertEqual(sut.movie.id, Test.movie1.id)
+        sut.configureCell(movie: TConstants.movie1)
+        XCTAssertEqual(sut.movie.id, TConstants.movie1.id)
+    }
+    
+    func testPrepareForReuseSuccess() {
+        sut.prepareForReuse()
+        XCTAssertNil(sut.imageView?.image)
     }
     
     func testCustomViewContainsAView() {

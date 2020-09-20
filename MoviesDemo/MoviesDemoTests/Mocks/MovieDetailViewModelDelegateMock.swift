@@ -15,7 +15,7 @@ class  MovieDetailViewModelDelegateMock: MovieDetailViewModelDelegate {
     
     func didLoadDataSuccessfully(in model: MovieDetailViewModel) {
         guard let expectation = asyncExpectation else {
-          XCTFail(Messages.delegateWasNotSetUpCorrect)
+          XCTFail(TMessages.delegateWasNotSetUpCorrect)
           return
         }
         delegateAsyncResult = true
@@ -24,7 +24,7 @@ class  MovieDetailViewModelDelegateMock: MovieDetailViewModelDelegate {
     }
     func movieDetailViewModel(_ model: MovieDetailViewModel, didFailWithError error: Error) {
         guard let expectation = asyncExpectation else {
-          XCTFail(Messages.delegateWasNotSetUpCorrect)
+          XCTFail(TMessages.delegateWasNotSetUpCorrect)
           return
         }
         self.error = error

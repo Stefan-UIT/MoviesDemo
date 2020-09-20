@@ -10,23 +10,23 @@ import Foundation
 
 // MARK: - MoviesViewModelDelegate
 protocol MoviesViewModelDelegate: class {
-    func didFinishFetchingData(in model: MoviesViewModel)
-    func didLoadDataSuccessfully(in model: MoviesViewModel)
-    func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error)
-    func loadingMoreItems(in model: MoviesViewModel)
+    func didFinishFetchingData(in viewModel: MoviesViewModel)
+    func didLoadDataSuccessfully(in viewModel: MoviesViewModel)
+    func moviesViewModel(_ viewModel: MoviesViewModel, didFailWithError error: Error)
+    func loadingMoreItems(in viewModel: MoviesViewModel)
 }
 
 // MARK: - Optional MoviesViewModelDelegate
 extension MoviesViewModelDelegate {
-    func loadingMoreItems(in model: MoviesViewModel) {}
+    func loadingMoreItems(in viewModel: MoviesViewModel) {}
 }
 
 // MARK: - MoviesViewModel
 final class MoviesViewModel {
     private var provider: MovieNetworkable
+    private var pagingCalculator: PagingCalculable
     private var movies: [Movie]
     private var currentPage: Int
-    private var pagingCalculator = PagingCalculator()
     private var isLastPageReached: Bool = false
     private var isFetchInProgress = false
     
@@ -34,10 +34,12 @@ final class MoviesViewModel {
     
     init(movies: [Movie] = [Movie](),
          currentPage: Int = 1,
+         pagingCalculator: PagingCalculable = PagingCalculator(),
          provider: MovieNetworkable = MovieService()) {
         self.provider = provider
         self.movies = movies
         self.currentPage = currentPage
+        self.pagingCalculator = pagingCalculator
     }
     
     var numberOfItems: Int {
@@ -93,7 +95,6 @@ final class MoviesViewModel {
                                     strongSelf.movies.removeAll()
                                 }
                                 strongSelf.movies.append(contentsOf: responseData)
-                                
                                 strongSelf.calculatingPaginationData(numberOfNewItems: responseData.count)
                                 strongSelf.delegate?.didLoadDataSuccessfully(in: strongSelf)
         })

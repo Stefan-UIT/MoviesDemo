@@ -15,8 +15,7 @@ class MainCoordinator: Coordinator {
         self.navigationController = navigationController
     }
 
-    func start() {
-        let viewController = MoviesViewController.instantiate()
+    func start(withViewController viewController: BaseViewController = MoviesViewController.instantiate()) {
         viewController.coordinator = self
         navigationController.pushViewController(viewController, animated: false)
     }

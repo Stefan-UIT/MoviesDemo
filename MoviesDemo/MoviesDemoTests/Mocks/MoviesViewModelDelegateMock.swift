@@ -9,45 +9,26 @@
 import XCTest
 @testable import MoviesDemo
 
-struct Messages {
-    static let delegateWasNotSetUpCorrect = "Delegate was not setup correctly"
-}
-
 class  MoviesViewModelDelegateMock: MoviesViewModelDelegate {
     var asyncExpectation: XCTestExpectation?
-    var delegateAsyncResult: Bool? = .none
+    var isDidFinishFetchingData = false
+    var isDidLoadDataSuccessfully = false
+    var isLoadMoreItemCalled = false
     var error: Error?
     
-    func didFinishFetchingData(in model: MoviesViewModel) {
-        guard let expectation = asyncExpectation else {
-            XCTFail(Messages.delegateWasNotSetUpCorrect)
-          return
-        }
-        delegateAsyncResult = true
-        expectation.fulfill()
+    func didFinishFetchingData(in viewModel: MoviesViewModel) {
+        isDidFinishFetchingData = true
     }
     
-    func didLoadDataSuccessfully(in model: MoviesViewModel) {
-        guard let expectation = asyncExpectation else {
-          XCTFail(Messages.delegateWasNotSetUpCorrect)
-          return
-        }
-        delegateAsyncResult = true
-        expectation.fulfill()
+    func didLoadDataSuccessfully(in viewModel: MoviesViewModel) {
+        isDidLoadDataSuccessfully = true
     }
     
-    func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error) {
-        guard let expectation = asyncExpectation else {
-          XCTFail(Messages.delegateWasNotSetUpCorrect)
-          return
-        }
+    func moviesViewModel(_ viewModel: MoviesViewModel, didFailWithError error: Error) {
         self.error = error
-        expectation.fulfill()
     }
     
-    func resetData() {
-        asyncExpectation = nil
-        delegateAsyncResult = .none
-        error = nil
+    func loadingMoreItems(in viewModel: MoviesViewModel) {
+        isLoadMoreItemCalled = true
     }
 }
