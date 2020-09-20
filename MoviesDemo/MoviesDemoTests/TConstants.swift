@@ -24,5 +24,6 @@ struct TMessages {
     static let timeOutWithError = "Time out errored: %@"
     static let delegateWasNotSetUpCorrect = "Delegate was not setup correctly"
     static let error = "Error"
+    static let shouldBeNotDecodeable = "Should Be Not Decodeable"
     static let invalidPath = "Invalid path"
 }
