@@ -18,13 +18,15 @@ Remember to run ``` pod install ``` before running the project.
 - ``` SDWebImage ```: an asynchronous memory + disk image caching with automatic cache expiration handling, support background image decompression to avoid frame rate drop.
 
 ##  Structure
-- App flow: Loading -> Movies (Discovery) -> MovieDetail -> Booking
 - MVVM: Model - View - ViewModel
+- App flow: Movies (Discovery) -> MovieDetail -> Booking
+   + ```MoviesViewController```, ```MoviesViewModel``` is related to Discovery screen (first screen)
+   + ```MovieDetailViewController```, ```MovieDetailViewModel``` is related to MovieDettail screen (second screen)
+   + ```BookingViewController``` is related to Booking screen (third screen)
+- Coordinator: to manage app's navigations. (``` Coordinator ``` protocol and ``` MainCoordinator ```)
+- Adapter: to move data sources and delegates out of movies view controllers (``` MoviesListAdapter ```)
 - Api services:
-    + NetworkManager contains a provider which will be the main object that we will use to interact with any network service.
-    + A Service (MovieService) should conforms to a protocol named "TargetType", which requires the entire endpoints information of the service, such as: baseUrl,        header, path, parameters, method, task(make request), etc..
-    ( by using enum, case by case, entirely type-safe 🎉.)
-    
-    => To summarize: Provider -> Service(MovieService..) -> Endpoint -> make Request.
+    + ```MovieService``` contains a provider which will be the main object that we will use to interact with any ```MovieTarget``` endpoints.
+    + A Target (```MovieTarget```) should conforms to a protocol named ```TargetType```, which requires the entire endpoints informations, such as: baseUrl, header, path, parameters, method, task(make request), etc..( by using enum, case by case, entirely type-safe 🎉.)
 
 ## That's it! Enjoy the app!
