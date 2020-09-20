@@ -13,8 +13,8 @@ final class MoviesViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
-    var viewModel: MoviesViewModel!
-    private var refreshControl = UIRefreshControl()
+    private var viewModel: MoviesViewModel!
+    private var refreshControl: UIRefreshControl!
     private var adapter: MoviesListAdapter!
     
     // MARK: - View Life Cycle
@@ -25,19 +25,7 @@ final class MoviesViewController: BaseViewController {
         setupUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.tableView.reloadData()
-    }
-    
     // MARK: - Private Methods
-    private func redirectToMovieDetail(withMovie movie: Movie) {
-        let movieDetailVC = MovieDetailViewController.instantiate()
-        movieDetailVC.viewModel = MovieDetailViewModel.init(movie: movie)
-        movieDetailVC.viewModel.delegate = movieDetailVC
-        navigationController?.pushViewController(movieDetailVC, animated: true)
-    }
-    
     private func initAdapter() {
         adapter = MoviesListAdapter(delegate: self)
         tableView.delegate = adapter
@@ -45,6 +33,7 @@ final class MoviesViewController: BaseViewController {
     }
     
     private func initViewModel() {
+        viewModel = MoviesViewModel()
         viewModel.delegate = self
         viewModel.fetchMovies()
     }
@@ -56,15 +45,11 @@ final class MoviesViewController: BaseViewController {
     }
     
     private func setupRefreshControl() {
-        refreshControl.tintColor = UIColor.lightGray
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        let attributedTitle = NSAttributedString(string: Messages.pullToRefresh, attributes: attributes)
-        refreshControl.attributedTitle = attributedTitle
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl = UIRefreshControl.appRefreshControl(target: self, selector: #selector(refreshData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
     
-    @objc private func refreshData() {
+    @objc func refreshData() {
         viewModel.refreshData()
     }
     
@@ -80,19 +65,19 @@ final class MoviesViewController: BaseViewController {
 
 // MARK: - MoviesViewModelDelegate
 extension MoviesViewController: MoviesViewModelDelegate {
-    func didFinishFetchingData(in model: MoviesViewModel) {
+    func didFinishFetchingData(in viewModel: MoviesViewModel) {
         dismissSpinningView()
     }
     
-    func didLoadDataSuccessfully(in model: MoviesViewModel) {
+    func didLoadDataSuccessfully(in viewModel: MoviesViewModel) {
         tableView.reloadData()
     }
     
-    func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error) {
+    func moviesViewModel(_ viewModel: MoviesViewModel, didFailWithError error: Error) {
         showAlert(message: Messages.couldNotGetMoviesData)
     }
     
-    func loadingMoreItems(in model: MoviesViewModel) {
+    func loadingMoreItems(in viewModel: MoviesViewModel) {
         tableView.addFooterLoading()
     }
 }
@@ -105,7 +90,7 @@ extension MoviesViewController: MoviesListProtocol {
     
     func didSelectItem(at indexPath: IndexPath) {
         let movie = viewModel.movie(at: indexPath.row)
-        redirectToMovieDetail(withMovie: movie)
+        coordinator?.redirectToMovieDetailVC(withMovie: movie)
     }
     
     func wilDisplayItem(at indexPath: IndexPath) {

@@ -9,9 +9,9 @@
 import Foundation
 import Moya
 
-protocol Networkable {
-    var provider: MoyaProvider<MultiTarget> { get }
-    
+protocol MovieNetworkable {
+    var provider: MoyaProvider<MovieTarget> { get }
+
     func fetchMovies(page: Int, sortBy: SortBy, completion: @escaping ([Movie]?, Error?) -> Void)
     func fetchMovieDetail(movieId: Int, completion: @escaping (Movie?, Error?) -> Void)
 }

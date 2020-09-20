@@ -18,9 +18,11 @@ final class MovieDetailViewController: BaseViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backdropImageView: UIImageView!
+    @IBOutlet weak var bookButton: UIButton!
     
     // MARK: - Variables
-    var viewModel: MovieDetailViewModel!
+    private var viewModel: MovieDetailViewModel!
+    var movie: Movie!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -31,6 +33,7 @@ final class MovieDetailViewController: BaseViewController {
     
     // MARK: - Private Methods
     private func initViewModel() {
+        viewModel = MovieDetailViewModel(movie: movie)
         viewModel.delegate = self
         viewModel.fetchMovieDetail()
     }
@@ -50,22 +53,16 @@ final class MovieDetailViewController: BaseViewController {
     
     private func loadBackdropImage() {
         guard
-            let urlString = viewModel.backdropUrl,
-            let backdropUrl = URL(string: urlString) else {
+            let backdropUrl = viewModel.backdropUrl else {
                 backdropImageView.image = Images.errorPoster
                 return
         }
         backdropImageView.sd_setImage(with: backdropUrl, placeholderImage: nil, options: .progressiveLoad)
     }
     
-    private func presentBookingViewController() {
-        let bookingVC = BookingViewController.instantiate()
-        navigationController?.pushViewController(bookingVC, animated: true)
-    }
-    
     // MARK: - Actions
     @IBAction func onBookMovieTouchUp(_ sender: UIButton) {
-        presentBookingViewController()
+        coordinator?.redirectToBookingVC()
     }
 }
 

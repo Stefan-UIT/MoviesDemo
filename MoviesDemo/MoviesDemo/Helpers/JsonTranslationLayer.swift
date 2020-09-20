@@ -10,14 +10,6 @@ import Foundation
 
 enum JsonParseError: Error {
     case couldNotDecode
-    
-    var errorDescription: String {
-        switch self {
-        case .couldNotDecode:
-            return Messages.couldNotDecode
-        }
-        
-    }
 }
 
 protocol Translatable {

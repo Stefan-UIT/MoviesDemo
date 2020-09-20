@@ -8,7 +8,9 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {}
+class BaseViewController: UIViewController {
+    var coordinator: MainCoordinator?
+}
 
 // MARK: - Storyboarded
 extension BaseViewController: Storyboarded {}

@@ -15,26 +15,15 @@ struct GeneralListResponse<T: Decodable>: Decodable {
 
 // swiftlint:disable identifier_name
 struct Movie: Decodable {
-    private (set) var popularity: Double?
-    private (set) var posterPath: String?
-    private (set) var backdropPath: String?
-    private (set) var runtime: Int?
-    private (set) var genres: [Genre]?
-    private (set) var spokenLanguages: [SpokenLanguage]?
-    
     var id: Int
     var title: String = ""
     var overview: String = ""
-    
-    var posterUrl: String? {
-        guard let path = posterPath else { return nil }
-        return BasePosterUrl.w300.baseURL + path
-    }
-    
-    var backdropUrl: String? {
-        guard let path = backdropPath else { return nil }
-        return BaseBackdropUrl.w780.baseURL + path
-    }
+    var popularity: Double?
+    var posterPath: String?
+    var backdropPath: String?
+    var runtime: Int?
+    var genres: [Genre]?
+    var spokenLanguages: [SpokenLanguage]?
     
     var popularityText: String {
         guard let popNumber = popularity else { return "" }
@@ -46,17 +35,32 @@ struct Movie: Decodable {
         return "\(runtimeNumber)"
     }
     
-    var generNames: String {
-        guard let array = genres, !array.isEmpty else { return "" }
-        let names = array.map({ $0.name })
-        return names.joined(separator: " - ")
-
+    var generNames: [String] {
+        guard let array = genres, !array.isEmpty else { return [String]() }
+        return array.map({ $0.name })
     }
     
-    var spokenLanguageNames: String {
-        guard let array = spokenLanguages, !array.isEmpty else { return "" }
-        let names = array.map({ $0.name })
-        return names.joined(separator: " - ")
+    var generNamesWithDash: String {
+        generNames.joined(separator: Separators.dashWithSpace)
+    }
+    
+    var spokenLanguageNames: [String] {
+        guard let array = spokenLanguages, !array.isEmpty else { return [String]() }
+        return array.map({ $0.name })
+    }
+    
+    var spokenLanguageNamesWithDash: String {
+        spokenLanguageNames.joined(separator: Separators.dashWithSpace)
+    }
+    
+    func posterUrl(basePosterUrl: BasePosterUrl = .w300) -> URL? {
+        guard let path = posterPath else { return nil }
+        return URL(string: basePosterUrl.baseURL + path)
+    }
+    
+    func backdropUrl(baseBackdropUrl: BaseBackdropUrl = .w780) -> URL? {
+        guard let path = backdropPath else { return nil }
+        return URL(string: baseBackdropUrl.baseURL + path)
     }
 }
 
