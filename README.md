@@ -18,7 +18,8 @@ Remember to run ``` pod install ``` before running the project.
 - ``` SDWebImage ```: an asynchronous memory + disk image caching with automatic cache expiration handling, support background image decompression to avoid frame rate drop.
 
 ##  Structure
-- MVVM: Model - View - ViewModel
+- MVVM: Model - View - ViewModel.
+- SOLID principles.
 - App flow: Movies (Discovery) -> MovieDetail -> Booking
    + ```MoviesViewController```, ```MoviesViewModel``` is related to Discovery screen (first screen)
    + ```MovieDetailViewController```, ```MovieDetailViewModel``` is related to MovieDettail screen (second screen)
