@@ -24,7 +24,7 @@ Remember to run ``` pod install ``` before running the project.
    + ```MovieDetailViewController```, ```MovieDetailViewModel``` is related to MovieDettail screen (second screen)
    + ```BookingViewController``` is related to Booking screen (third screen)
 - Coordinator: to manage app's navigations. (``` Coordinator ``` protocol and ``` MainCoordinator ```)
-- Adapter: to move data sources and delegates out of movies view controllers (``` MoviesListAdapter ```)
+- Adapter: to move data sources and delegates out of view controllers (``` MoviesListAdapter ```)
 - Api services:
     + ```MovieService``` contains a provider which will be the main object that we will use to interact with any ```MovieTarget``` endpoints.
     + A Target (```MovieTarget```) should conforms to a protocol named ```TargetType```, which requires the entire endpoints informations, such as: baseUrl, header, path, parameters, method, task(make request), etc..( by using enum, case by case, entirely type-safe 🎉.)
