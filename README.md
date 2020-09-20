@@ -28,7 +28,9 @@ Remember to run ``` pod install ``` before running the project.
 - Adapter: to move data sources and delegates out of view controllers (``` MoviesListAdapter ```)
 - Api services:
     + ```MovieService``` contains a provider which will be the main object that we will use to interact with any ```MovieTarget``` endpoints.
-    + A Target (```MovieTarget```) should conforms to a protocol named ```TargetType```, which requires the entire endpoints informations, such as: baseUrl, header, path, parameters, method, task(make request), etc..( by using enum, case by case, entirely type-safe 🎉.)
+    + A Target (```MovieTarget```) should conforms to a protocol named ```TargetType```, which requires the entire endpoints informations. Our app has 2 main endpoints: ```fetchMovies``` and ```fetchMovieDetail```
+    + An enpoint information should contain baseUrl, header, path, parameters, method, task(make request), etc..
+    ( by using enum, case by case, entirely type-safe 🎉.)
     
 ##  Unit Test Coverage
 ![](demo_files/Unit_Test_Coverage.png)
