@@ -8,8 +8,8 @@
 
 import UIKit
 
-final class LoadingViewController: UIViewController {
-    private var viewModel = MoviesViewModel()
+final class LoadingViewController: BaseViewController {
+    private var viewModel: MoviesViewModel!
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -23,17 +23,8 @@ final class LoadingViewController: UIViewController {
     
     // MARK: - Private Methods
     private func initViewModel() {
+        viewModel = MoviesViewModel()
         viewModel.delegate = self
-        viewModel.fetchMovies()
-    }
-    
-    private func redirectToMoviesViewController() {
-        let moviesVC = MoviesViewController.instantiate()
-        moviesVC.viewModel = viewModel
-        viewModel.delegate = moviesVC
-        let nav = UINavigationController(rootViewController: moviesVC)
-        nav.applyTheme()
-        ControllerHelper.setToRootViewController(nav)
     }
 }
 
@@ -43,7 +34,7 @@ extension LoadingViewController: MoviesViewModelDelegate {
     }
     
     func didLoadDataSuccessfully(in model: MoviesViewModel) {
-        redirectToMoviesViewController()
+//        coordi÷nator?.redirectToMoviesViewController(movies: vie)
     }
     
     func moviesViewModel(_ model: MoviesViewModel, didFailWithError error: Error) {

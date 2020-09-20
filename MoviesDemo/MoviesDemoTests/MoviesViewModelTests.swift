@@ -40,7 +40,7 @@ class MoviesViewModelTests: XCTestCase {
         testFetchMoviesSuccess()
         
         viewModel.fetchMovies(isReset: false)
-        XCTAssertEqual(viewModel.numberOfItems, 4)
+        XCTAssertEqual(viewModel.numberOfItems, 6)
     }
     
     func testFetchMovieDetailSuccessIsResetTrue() {

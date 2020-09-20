@@ -22,14 +22,23 @@ extension MoviesViewModelDelegate {
 }
 
 // MARK: - MoviesViewModel
-final class MoviesViewModel: BaseMovieViewModel {
-    private var movies = [Movie]()
+final class MoviesViewModel {
+    private var provider: MovieNetworkable
+    private var movies: [Movie]
+    private var currentPage: Int
     private var pagingCalculator = PagingCalculator()
-    internal var currentPage = 1
     private var isLastPageReached: Bool = false
     private var isFetchInProgress = false
     
     weak var delegate: MoviesViewModelDelegate?
+    
+    init(movies: [Movie] = [Movie](),
+         currentPage: Int = 1,
+         provider: MovieNetworkable = MovieService()) {
+        self.provider = provider
+        self.movies = movies
+        self.currentPage = currentPage
+    }
     
     var numberOfItems: Int {
         return movies.count

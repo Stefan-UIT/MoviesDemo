@@ -25,16 +25,6 @@ struct Movie: Decodable {
     var genres: [Genre]?
     var spokenLanguages: [SpokenLanguage]?
     
-    func posterUrl(basePosterUrl: BasePosterUrl = .w300) -> URL? {
-        guard let path = posterPath else { return nil }
-        return URL(string: basePosterUrl.baseURL + path)
-    }
-    
-    func backdropUrl(baseBackdropUrl: BaseBackdropUrl = .w780) -> URL? {
-        guard let path = backdropPath else { return nil }
-        return URL(string: baseBackdropUrl.baseURL + path)
-    }
-    
     var popularityText: String {
         guard let popNumber = popularity else { return "" }
         return "\(popNumber)"
@@ -61,6 +51,16 @@ struct Movie: Decodable {
     
     var spokenLanguageNamesWithDash: String {
         spokenLanguageNames.joined(separator: Separators.dashWithSpace)
+    }
+    
+    func posterUrl(basePosterUrl: BasePosterUrl = .w300) -> URL? {
+        guard let path = posterPath else { return nil }
+        return URL(string: basePosterUrl.baseURL + path)
+    }
+    
+    func backdropUrl(baseBackdropUrl: BaseBackdropUrl = .w780) -> URL? {
+        guard let path = backdropPath else { return nil }
+        return URL(string: baseBackdropUrl.baseURL + path)
     }
 }
 

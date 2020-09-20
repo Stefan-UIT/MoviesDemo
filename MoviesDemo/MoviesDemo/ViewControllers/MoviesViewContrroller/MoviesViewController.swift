@@ -13,8 +13,9 @@ final class MoviesViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
-    var viewModel: MoviesViewModel!
-    private var refreshControl = UIRefreshControl()
+    var movies = [Movie]()
+    private var viewModel: MoviesViewModel!
+    private var refreshControl: UIRefreshControl!
     private var adapter: MoviesListAdapter!
     
     // MARK: - View Life Cycle
@@ -25,19 +26,7 @@ final class MoviesViewController: BaseViewController {
         setupUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.tableView.reloadData()
-    }
-    
     // MARK: - Private Methods
-    private func redirectToMovieDetail(withMovie movie: Movie) {
-        let movieDetailVC = MovieDetailViewController.instantiate()
-        movieDetailVC.viewModel = MovieDetailViewModel.init(movie: movie)
-        movieDetailVC.viewModel.delegate = movieDetailVC
-        navigationController?.pushViewController(movieDetailVC, animated: true)
-    }
-    
     private func initAdapter() {
         adapter = MoviesListAdapter(delegate: self)
         tableView.delegate = adapter
@@ -45,8 +34,11 @@ final class MoviesViewController: BaseViewController {
     }
     
     private func initViewModel() {
+        viewModel = MoviesViewModel(movies: movies)
         viewModel.delegate = self
-        viewModel.fetchMovies()
+        if movies.isEmpty {
+            viewModel.fetchMovies()
+        }
     }
     
     private func setupUI() {
@@ -55,16 +47,13 @@ final class MoviesViewController: BaseViewController {
         setupRefreshControl()
     }
     
+    // move to static func and func addToTableView(tableView:UITableView)
     private func setupRefreshControl() {
-        refreshControl.tintColor = UIColor.lightGray
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        let attributedTitle = NSAttributedString(string: Messages.pullToRefresh, attributes: attributes)
-        refreshControl.attributedTitle = attributedTitle
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl = UIRefreshControl.appRefreshControl(target: self, selector: #selector(refreshData), for: .valueChanged)
         tableView.addSubview(refreshControl)
     }
     
-    @objc private func refreshData() {
+    @objc func refreshData() {
         viewModel.refreshData()
     }
     
@@ -105,7 +94,7 @@ extension MoviesViewController: MoviesListProtocol {
     
     func didSelectItem(at indexPath: IndexPath) {
         let movie = viewModel.movie(at: indexPath.row)
-        redirectToMovieDetail(withMovie: movie)
+        coordinator?.redirectToMovieDetailVC(withMovie: movie)
     }
     
     func wilDisplayItem(at indexPath: IndexPath) {
@@ -114,5 +103,21 @@ extension MoviesViewController: MoviesListProtocol {
     
     func retrieveNumberOfItems() -> Int {
         viewModel.numberOfItems
+    }
+}
+
+extension UIRefreshControl {
+    static func appRefreshControl(target: UIViewController,
+                                  title: String = Messages.pullToRefresh,
+                                  selector: Selector,
+                                  for event: UIControl.Event = .valueChanged) -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.lightGray
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
+        refreshControl.attributedTitle = attributedTitle
+        refreshControl.addTarget(target, action: selector, for: event)
+        
+        return refreshControl
     }
 }

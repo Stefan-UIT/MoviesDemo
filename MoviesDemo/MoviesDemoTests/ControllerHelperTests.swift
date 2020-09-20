@@ -27,5 +27,4 @@ class ControllerHelperTests: XCTestCase {
         let rootViewController = ControllerHelper.window?.rootViewController
         XCTAssertEqual(expectedController, rootViewController)
     }
-
 }

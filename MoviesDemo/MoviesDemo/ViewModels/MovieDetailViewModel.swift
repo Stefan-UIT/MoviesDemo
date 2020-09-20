@@ -15,7 +15,8 @@ protocol MovieDetailViewModelDelegate: class {
 }
 
 // MARK: - MovieDetailViewModelDelegate
-final class MovieDetailViewModel: BaseMovieViewModel {
+final class MovieDetailViewModel {
+    private var provider: MovieNetworkable!
     private var movie: Movie!
     weak var delegate: MovieDetailViewModelDelegate?
     
@@ -44,7 +45,7 @@ final class MovieDetailViewModel: BaseMovieViewModel {
     }
     
     init(movie: Movie, provider: MovieNetworkable = MovieService()) {
-        super.init(provider: provider)
+        self.provider = provider
         self.movie = movie
     }
     
